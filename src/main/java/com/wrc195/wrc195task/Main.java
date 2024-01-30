@@ -1,5 +1,6 @@
 package com.wrc195.wrc195task;
 
+import DAO.AppointmentsQuery;
 import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class Main extends Application {
     @Override
@@ -18,7 +21,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
         launch(args);
         JDBC.closeConnection();

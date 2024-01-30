@@ -18,9 +18,9 @@ public class CountriesQuery {
         try {
             String sql = "SELECT * FROM countries";
 
-            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            PreparedStatement allCountries = JDBC.getConnection().prepareStatement(sql);
 
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = allCountries.executeQuery();
 
             while(rs.next()) {
                 int countryID = rs.getInt("Country_ID");
