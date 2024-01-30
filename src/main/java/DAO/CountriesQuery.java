@@ -13,26 +13,26 @@ import java.sql.Timestamp;
 public class CountriesQuery {
 
     public static ObservableList<Countries> getAllCountries() {
-        ObservableList<Countries> countriesList = FXCollections.observableArrayList();
+        ObservableList<Countries> allCountries = FXCollections.observableArrayList();
 
         try {
             String sql = "SELECT * FROM countries";
 
-            PreparedStatement allCountries = JDBC.getConnection().prepareStatement(sql);
+            PreparedStatement getCountries = JDBC.getConnection().prepareStatement(sql);
 
-            ResultSet rs = allCountries.executeQuery();
+            ResultSet rs = getCountries.executeQuery();
 
             while(rs.next()) {
                 int countryID = rs.getInt("Country_ID");
                 String countryName = rs.getString("Country");
                 Countries country = new Countries(countryID, countryName);
-                countriesList.add(country);
+                allCountries.add(country);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return countriesList;
+        return allCountries;
     }
 
     public static void checkDateConversion() {

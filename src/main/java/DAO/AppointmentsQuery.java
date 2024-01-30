@@ -1,14 +1,46 @@
 package DAO;
 
 import helper.JDBC;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.Appointments;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDateTime;
 
 public class AppointmentsQuery {
+    public static ObservableList<Appointments> getAllAppointments() {
+        ObservableList<Appointments> allAppointments = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM appointments";
+
+            PreparedStatement getAppointments = JDBC.getConnection().prepareStatement(sql);
+
+            ResultSet rs = getAppointments.executeQuery();
+
+            while(rs.next()) {
+                int apptID = rs.getInt("Appointment_ID");
+                String apptTitle = rs.getString("Title");
+                String apptDescription = rs.getString("Description");
+                String apptLocation = rs.getString("Location");
+                String apptType = rs.getString("Type");
+                LocalDateTime apptStart = rs.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime apptEnd = rs.getTimestamp("End").toLocalDateTime();
+                int customerID = rs.getInt("Customer_ID");
+                int userID = rs.getInt("User_ID");
+                int contactID = rs.getInt("Contact_ID");
+                Appointments appointment = new Appointments(apptID, apptTitle, apptDescription, apptLocation, apptType, apptStart, apptEnd, customerID, userID, contactID);
+                allAppointments.add(appointment);
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return allAppointments;
+
+    }
 
     /**
      * Sql query to add new appointments to the database. Appointment ID is auto-generated.
@@ -78,7 +110,7 @@ public class AppointmentsQuery {
     }
 
     /**
-     * SQL query for deleting an existing appointment in the database.
+     * SQL query for deleting an existing appointment from the database.
      * @param apptID Appointment ID
      */
     public static void deleteAppointment(int apptID) {
