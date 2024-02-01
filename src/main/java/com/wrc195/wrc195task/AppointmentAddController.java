@@ -2,10 +2,7 @@ package com.wrc195.wrc195task;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class AppointmentAddController {
     @FXML
@@ -15,7 +12,7 @@ public class AppointmentAddController {
     private DatePicker apptEndDatePicker;
 
     @FXML
-    private ComboBox<String> apptEndTimeCBox;
+    private Spinner<?> apptEndTimeSpinner;
 
     @FXML
     private TextField apptIDTxt;
@@ -27,7 +24,7 @@ public class AppointmentAddController {
     private DatePicker apptStartDatePicker;
 
     @FXML
-    private ComboBox<String> apptStartTimeCBox;
+    private Spinner<?> apptStartTimeSpinner;
 
     @FXML
     private TextField apptTitleTxt;
@@ -39,10 +36,10 @@ public class AppointmentAddController {
     private ComboBox<String> contactCBox;
 
     @FXML
-    private TextField customerIDTxt;
+    private ChoiceBox<?> customerIDCBox;
 
     @FXML
-    private TextField userIDTxt;
+    private ChoiceBox<?> userIDCBox;
 
     @FXML
     void onActionCancel(ActionEvent event) {

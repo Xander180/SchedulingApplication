@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wrc195.wrc195task.LoginController">
    <children>
+      <Label layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0" style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 5;" />
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0">
