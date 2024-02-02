@@ -10,6 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsersQuery {
+    /**
+     *
+     * @return all user accounts in the database.
+     */
     public static ObservableList<Users> allUsers() {
         ObservableList<Users> allUsers = FXCollections.observableArrayList();
 
