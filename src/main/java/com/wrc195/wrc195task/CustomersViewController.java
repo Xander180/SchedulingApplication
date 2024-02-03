@@ -2,10 +2,17 @@ package com.wrc195.wrc195task;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
-public class CustomerViewController {
+import java.io.IOException;
+
+public class CustomersViewController {
     @FXML
     private TableView<?> apptsTableView;
 
@@ -27,6 +34,9 @@ public class CustomerViewController {
     @FXML
     private TableColumn<?, ?> customerPostalCol;
 
+    Stage stage;
+    Parent scene;
+
     @FXML
     void onActionAddCustomer(ActionEvent event) {
 
@@ -38,7 +48,11 @@ public class CustomerViewController {
     }
 
     @FXML
-    void onActionExit(ActionEvent event) {
+    void onActionExit(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("MainMenu.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
 
     }
 

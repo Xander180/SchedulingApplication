@@ -2,20 +2,48 @@ package com.wrc195.wrc195task;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
-public class MainMenuController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+
+public class MainMenuController implements Initializable {
+    Stage stage;
+    Parent scene;
     @FXML
-    void onActionAppointments(ActionEvent event) {
-
+    void onActionAppointments(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("AppointmentsView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    void onActionCustomers(ActionEvent event) {
-
+    void onActionCustomers(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("CustomersView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    void onActionLogOut(ActionEvent event) {
+    void onActionLogOut(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("LoginView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 

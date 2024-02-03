@@ -2,9 +2,16 @@ package com.wrc195.wrc195task;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AppointmentsViewController {
     @FXML
@@ -49,6 +56,9 @@ public class AppointmentsViewController {
     @FXML
     private RadioButton weeklyApptsRBtn;
 
+    Stage stage;
+    Parent scene;
+
     @FXML
     void onActionAddAppt(ActionEvent event) {
 
@@ -60,8 +70,11 @@ public class AppointmentsViewController {
     }
 
     @FXML
-    void onActionExit(ActionEvent event) {
-
+    void onActionExit(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("MainMenu.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML

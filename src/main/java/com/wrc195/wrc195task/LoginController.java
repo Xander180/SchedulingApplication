@@ -83,18 +83,16 @@ public class LoginController implements Initializable {
      * @return false if fields are empty or account not found, else true.
      */
     private boolean checkLogin() {
+
         if (!validateEmptyFields()) return false;
 
         for (Users user : allUsers) {
-            if (!usernameTxt.getText().equals(user.getUserName())  && !passwordField.getText().equals(user.getUserPassword())) {
-                if (isFrench) {
-                    Alerts.getError(2);
-                } else Alerts.getError(1);
-
-                return false;
-            }
+            if (usernameTxt.getText().equals(user.getUserName()) || passwordField.getText().equals(user.getUserPassword()))  return true;
         }
-        return true;
+        if (isFrench) {
+            Alerts.getError(2);
+        } else Alerts.getError(1);
+        return false;
     }
 
     /**
