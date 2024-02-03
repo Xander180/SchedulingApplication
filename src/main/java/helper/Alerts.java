@@ -12,10 +12,28 @@ public class Alerts {
                 errorAlert.setTitle("Error");
                 errorAlert.setHeaderText("Username or password is incorrect.");
                 errorAlert.showAndWait();
+                break;
             case 2:
                 errorAlert.setTitle("Erreur");
                 errorAlert.setHeaderText("Le nom d'utilisateur ou le mot de passe est incorrecte.");
                 errorAlert.showAndWait();
+                break;
+            case 3:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Username and password must not be empty.");
+                errorAlert.showAndWait();
+                break;
+            case 4:
+                errorAlert.setTitle("Erreur");
+                errorAlert.setHeaderText("Le nom d'utilisateur et le mot de passe ne doivent pas être vides");
+                errorAlert.showAndWait();
+                break;
+            case 5:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Password must not be empty.");
+                errorAlert.showAndWait();
+                break;
+
         }
     }
 

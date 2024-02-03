@@ -75,25 +75,41 @@ public class LoginController implements Initializable {
             scene = FXMLLoader.load(Main.class.getResource("MainMenu.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
-        } else if (isFrench){
-            Alerts.getError(2);
-        } else {
-            Alerts.getError(1);
         }
-
     }
 
     /**
      *
-     * @return true if account is found or false if not.
+     * @return false if fields are empty or account not found, else true.
      */
     private boolean checkLogin() {
+        if (!validateEmptyFields()) return false;
+
         for (Users user : allUsers) {
-            if (usernameTxt.getText().equals(user.getUserName())  && passwordField.getText().equals(user.getUserPassword())) {
-                return true;
+            if (!usernameTxt.getText().equals(user.getUserName())  && !passwordField.getText().equals(user.getUserPassword())) {
+                if (isFrench) {
+                    Alerts.getError(2);
+                } else Alerts.getError(1);
+
+                return false;
             }
         }
-        return false;
+        return true;
+    }
+
+    /**
+     *
+     * @return false if username or password field is empty, else true.
+     */
+    private boolean validateEmptyFields() {
+        if (usernameTxt.getText().isEmpty() || passwordField.getText().isEmpty()) {
+            if (isFrench) {
+                Alerts.getError(4);
+            } else Alerts.getError(3);
+
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -109,7 +125,7 @@ public class LoginController implements Initializable {
 
         /**
          * Check if system language is set to French
-         * If so, change text language for log in screen only.
+         * If so, change text language for log in screen and log in errors only.
          */
         if (currentLocale.getDisplayLanguage() == "français") {
             isFrench = true;
