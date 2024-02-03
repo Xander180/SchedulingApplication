@@ -25,6 +25,9 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
     private final ObservableList<Users> allUsers = UsersQuery.allUsers();
 
+    private boolean isFrench;
+
+
     @FXML
     private Label currentLocaleLbl;
 
@@ -58,6 +61,13 @@ public class LoginController implements Initializable {
     @FXML
     void onActionExit(ActionEvent event) { System.exit(0); }
 
+    /**
+     * Logs into scheduling software if username and password match user info in database.
+     * Displays error if account information is incorrect in English or French.
+     *
+     * @param event Log In button.
+     * @throws IOException From FXMLLoader.
+     */
     @FXML
     void onActionLogIn(ActionEvent event) throws IOException {
         if (checkLogin()) {
@@ -65,6 +75,8 @@ public class LoginController implements Initializable {
             scene = FXMLLoader.load(Main.class.getResource("MainMenu.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
+        } else if (isFrench){
+            Alerts.getError(2);
         } else {
             Alerts.getError(1);
         }
@@ -93,11 +105,30 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (System.getProperty("user.language") == "fr") {
-            localeTxtLbl.setText("Localité actuelle");
+        Locale currentLocale = Locale.getDefault();
+
+        /**
+         * Check if system language is set to French
+         * If so, change text language for log in screen only.
+         */
+        if (currentLocale.getDisplayLanguage() == "français") {
+            isFrench = true;
+            localeTxtLbl.setText("Localité actuelle: ");
             passwordLbl.setText("Mot de passe");
             usernameLbl.setText("Nom d'utilisateur");
             welcomeLbl.setText("Bienvenue");
+            loginBtn.setText("Se connecter");
+            exitBtn.setText("Sortie");
+        }
+
+        /**
+         * Checks user locale and displays it accordingly.
+         * Default is U.S.
+         */
+        if (currentLocale.getDisplayCountry() == "Canada") {
+            currentLocaleLbl.setText("Canada");
+        } else if (currentLocale.getDisplayCountry() == "Royaume-Uni") {
+            currentLocaleLbl.setText("U.K.");
         }
     }
 }

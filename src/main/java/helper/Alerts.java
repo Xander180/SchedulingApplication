@@ -12,6 +12,10 @@ public class Alerts {
                 errorAlert.setTitle("Error");
                 errorAlert.setHeaderText("Username or password is incorrect.");
                 errorAlert.showAndWait();
+            case 2:
+                errorAlert.setTitle("Erreur");
+                errorAlert.setHeaderText("Le nom d'utilisateur ou le mot de passe est incorrecte.");
+                errorAlert.showAndWait();
         }
     }
 
