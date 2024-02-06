@@ -1,10 +1,24 @@
 package com.wrc195.wrc195task;
 
+import DAO.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import model.Appointments;
 
-public class AppointmentAddController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AppointmentAddController implements Initializable {
+
+    private int generatedID = 1;
+
     @FXML
     private TextArea apptDescriptionTxt;
 
@@ -12,7 +26,7 @@ public class AppointmentAddController {
     private DatePicker apptEndDatePicker;
 
     @FXML
-    private Spinner<?> apptEndTimeSpinner;
+    private Spinner<Integer> apptEndTimeSpinner;
 
     @FXML
     private TextField apptIDTxt;
@@ -24,7 +38,7 @@ public class AppointmentAddController {
     private DatePicker apptStartDatePicker;
 
     @FXML
-    private Spinner<?> apptStartTimeSpinner;
+    private Spinner<Integer> apptStartTimeSpinner;
 
     @FXML
     private TextField apptTitleTxt;
@@ -36,18 +50,39 @@ public class AppointmentAddController {
     private ComboBox<String> contactCBox;
 
     @FXML
-    private ChoiceBox<?> customerIDCBox;
+    private ChoiceBox<Integer> customerIDCBox;
 
     @FXML
-    private ChoiceBox<?> userIDCBox;
+    private ChoiceBox<Integer> userIDCBox;
+
+    Stage stage;
+    Parent scene;
 
     @FXML
-    void onActionCancel(ActionEvent event) {
-
+    void onActionCancel(ActionEvent event) throws IOException {
+        Main.jumpToPage(event, "AppointmentsView.fxml");
     }
 
     @FXML
     void onActionSaveAppt(ActionEvent event) {
 
+    }
+
+    private int generateID() {
+        for (Appointments appointment : AppointmentsQuery.getAllAppointments()) {
+            if (appointment.getApptID() == generatedID) {
+                generatedID++;
+            }
+        }
+        return generatedID;
+    }
+
+    /**
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        generatedID = generateID();
     }
 }

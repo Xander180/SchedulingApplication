@@ -1,5 +1,14 @@
 package model;
 
+import com.wrc195.wrc195task.Main;
+import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 /**
@@ -8,6 +17,8 @@ import java.time.LocalDateTime;
  * @author Wilson Ramirez
  */
 public class Appointments {
+    static Stage stage;
+    static Parent scene;
     private int apptID;
     private String apptTitle;
     private String apptDescription;
@@ -126,4 +137,5 @@ public class Appointments {
     public int getContactID() {
         return contactID;
     }
+
 }

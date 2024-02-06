@@ -71,10 +71,7 @@ public class LoginController implements Initializable {
     @FXML
     void onActionLogIn(ActionEvent event) throws IOException {
         if (checkLogin()) {
-            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            scene = FXMLLoader.load(Main.class.getResource("MainMenu.fxml"));
-            stage.setScene(new Scene(scene));
-            stage.show();
+            Main.jumpToPage(event, "MainMenu.fxml");
         }
     }
 

@@ -82,10 +82,7 @@ public class AppointmentsViewController implements Initializable {
      */
     @FXML
     void onActionAddAppt(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("AppointmentAddView.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        Main.jumpToPage(event, "AppointmentAddView.fxml");
     }
 
     /**
@@ -118,10 +115,7 @@ public class AppointmentsViewController implements Initializable {
      */
     @FXML
     void onActionExit(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("MainMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        Main.jumpToPage(event, "MainMenu.fxml");
     }
 
     /**

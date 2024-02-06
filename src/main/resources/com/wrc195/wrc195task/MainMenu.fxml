@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wrc195.wrc195task.MainMenuController">
    <children>
       <Label layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="490.0" style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 5;" />
-      <VBox alignment="CENTER" layoutX="100.0" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="12.0" prefHeight="375.0" prefWidth="300.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#onActionAppointments" prefHeight="100.0" prefWidth="200.0" text="Appointments">
                <font>
@@ -17,6 +17,11 @@
                </font>
             </Button>
             <Button layoutX="60.0" layoutY="160.0" mnemonicParsing="false" onAction="#onActionCustomers" prefHeight="100.0" prefWidth="200.0" text="Customers">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="60.0" layoutY="173.0" mnemonicParsing="false" onAction="#onActionReports" prefHeight="100.0" prefWidth="200.0" text="Reports">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

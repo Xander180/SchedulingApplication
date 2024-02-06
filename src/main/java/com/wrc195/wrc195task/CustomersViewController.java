@@ -55,10 +55,7 @@ public class CustomersViewController implements Initializable {
      */
     @FXML
     void onActionAddCustomer(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("CustomerAddView.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        Main.jumpToPage(event, "AddCustomerView.fxml");
     }
 
     /**
@@ -79,7 +76,7 @@ public class CustomersViewController implements Initializable {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                AppointmentsQuery.deleteAppointment(customerToModify.getCustomerID());
+                CustomersQuery.deleteCustomer(customerToModify.getCustomerID());
                 customersTableView.setItems(CustomersQuery.getAllCustomers());
             }
         }
@@ -92,10 +89,7 @@ public class CustomersViewController implements Initializable {
      */
     @FXML
     void onActionExit(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("MainMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        Main.jumpToPage(event, "MainMenu.fxml");
 
     }
 

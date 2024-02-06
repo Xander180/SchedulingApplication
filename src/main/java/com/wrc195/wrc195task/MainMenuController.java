@@ -19,27 +19,23 @@ public class MainMenuController implements Initializable {
     Parent scene;
     @FXML
     void onActionAppointments(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("AppointmentsView.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        Main.jumpToPage(event, "AppointmentsView.fxml");
     }
 
     @FXML
     void onActionCustomers(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("CustomersView.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        Main.jumpToPage(event, "CustomersView.fxml");
     }
 
     @FXML
     void onActionLogOut(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("LoginView.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        Main.jumpToPage(event, "LoginView.fxml");
 
+    }
+
+    @FXML
+    void onActionReports(ActionEvent event) throws IOException {
+        Main.jumpToPage(event, "ReportsView.fxml");
     }
 
     @Override
