@@ -38,7 +38,7 @@
                         <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TableView fx:id="apptsTableView" prefHeight="200.0" prefWidth="200.0">
+                        <TableView fx:id="customersTableView" prefHeight="200.0" prefWidth="200.0">
                             <columns>
                                 <TableColumn fx:id="customerIDCol" prefWidth="40.0" text="ID" />
                                 <TableColumn fx:id="customerNameCol" prefWidth="79.66666793823242" text="Name" />

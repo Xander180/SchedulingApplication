@@ -33,6 +33,11 @@ public class Alerts {
                 errorAlert.setHeaderText("No appointment selected.");
                 errorAlert.showAndWait();
                 break;
+            case 6:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("No customer selected.");
+                errorAlert.showAndWait();
+                break;
 
         }
     }
@@ -43,6 +48,11 @@ public class Alerts {
 
     public static void getConfirmation(int confirmType) {
         Alert confirmAlert = new Alert((Alert.AlertType.CONFIRMATION));
+
+        switch (confirmType) {
+            case 1:
+
+        }
     }
 
 

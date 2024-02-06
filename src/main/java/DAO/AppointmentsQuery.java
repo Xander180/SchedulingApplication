@@ -9,6 +9,11 @@ import java.sql.*;
 import java.time.LocalDateTime;
 
 public class AppointmentsQuery {
+    /**
+     * SQL query for getting all appointments from the database.
+     *
+     * @return all appointments.
+     */
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> allAppointments = FXCollections.observableArrayList();
 

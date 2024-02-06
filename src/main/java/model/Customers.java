@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.StringProperty;
+
 /**
  * Model for Customers.
  *
@@ -22,16 +24,14 @@ public class Customers {
      * @param customerZip Customer ZIP/Postal code.
      * @param customerPhone Customer phone number.
      * @param divisionID Associated division ID.
-     * @param divisionName Associated division name.
      */
-    public Customers(int customerID, String customerName, String customerAddress, String customerZip, String customerPhone, int divisionID, String divisionName) {
+    public Customers(int customerID, String customerName, String customerAddress, String customerZip, String customerPhone, int divisionID) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerZip = customerZip;
         this.customerPhone = customerPhone;
         this.divisionID = divisionID;
-        this.divisionName = divisionName;
     }
 
     /**
