@@ -30,7 +30,7 @@ public class Alerts {
                 break;
             case 5:
                 errorAlert.setTitle("Error");
-                errorAlert.setHeaderText("Password must not be empty.");
+                errorAlert.setHeaderText("No appointment selected.");
                 errorAlert.showAndWait();
                 break;
 
