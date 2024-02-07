@@ -1,6 +1,9 @@
 package model;
 
+import DAO.AppointmentsQuery;
 import com.wrc195.wrc195task.Main;
+import helper.Alerts;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -186,5 +189,29 @@ public class Appointments {
         } else {
             return false;
         }
+    }
+
+    public static boolean checkApptOverlap(int customerID, LocalDateTime apptStart, LocalDateTime apptEnd) {
+        ObservableList<Appointments> allAppointments = AppointmentsQuery.getAllAppointments();
+        LocalDateTime apptStartCheck;
+        LocalDateTime apptEndCheck;
+
+        for (Appointments appointment : allAppointments) {
+            apptStartCheck = appointment.getApptStart();
+            apptEndCheck = appointment.getApptEnd();
+            if (customerID != appointment.getCustomerID()) {
+                continue;
+            } else if (apptStartCheck.isEqual(apptStart) || apptEndCheck.isEqual(apptEnd)) {
+                Alerts.getWarning(1);
+                return true;
+            } else if (apptStart.isAfter(apptStartCheck) && apptStart.isBefore(apptEndCheck)) {
+                Alerts.getWarning(2);
+                return true;
+            } else if (apptEnd.isAfter(apptStartCheck) && apptEnd.isBefore(apptEndCheck)) {
+                Alerts.getWarning(3);
+                return true;
+            }
+        }
+        return false;
     }
 }

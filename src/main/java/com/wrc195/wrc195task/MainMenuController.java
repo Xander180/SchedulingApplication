@@ -1,5 +1,6 @@
 package com.wrc195.wrc195task;
 
+import helper.Alerts;
 import helper.Misc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,8 +28,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void onActionLogOut(ActionEvent event) throws IOException {
-        Misc.jumpToPage(event, "LoginView.fxml");
-
+        Alerts.getConfirmation(event, 1);
     }
 
     @FXML

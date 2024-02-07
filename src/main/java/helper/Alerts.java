@@ -1,9 +1,14 @@
 package helper;
 
+import javafx.event.Event;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import model.Appointments;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class Alerts {
 
@@ -87,7 +92,7 @@ public class Alerts {
                 errorAlert.showAndWait();
                 break;
             case 16:
-                errorAlert.setTitle("");
+                errorAlert.setTitle("Error");
                 errorAlert.setHeaderText("Outside of Business Hours");
                 errorAlert.setContentText(String.format("Appointment is outside of business hours: 8:00AM to 10:00PM EST\n" +
                         "Please schedule between " + Appointments.localStart().format(DateTimeFormatter.ofPattern("hh:mm")) + " - " + Appointments.localEnd().format(DateTimeFormatter.ofPattern("hh:mm")) + "PM local time."));
@@ -98,15 +103,60 @@ public class Alerts {
     }
 
     public static void getInfo(int infoType) {
+
         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+
+        switch (infoType) {
+            case 1:
+                infoAlert.setTitle("Appointment Confirmed");
+                infoAlert.setHeaderText("New appointment has been created.");
+                infoAlert.showAndWait();
+                break;
+            case 2:
+
+        }
     }
 
-    public static void getConfirmation(int confirmType) {
-        Alert confirmAlert = new Alert((Alert.AlertType.CONFIRMATION));
+    public static void getConfirmation(Event event, int confirmType) throws IOException {
+        Alert confirmAlert;
+        Optional<ButtonType> result;
 
         switch (confirmType) {
             case 1:
+                confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to log out?");
+                result = confirmAlert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    Misc.jumpToPage(event, "LoginView.fxml");
+                }
+            case 2:
+                confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Data for this form will not be saved. Are you sure?");
+                result = confirmAlert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    Misc.jumpToPage(event, "AppointmentsView.fxml");
+                }
+            case 3:
 
+        }
+    }
+
+    public static void getWarning(int warningType) {
+        Alert warningAlert = new Alert(Alert.AlertType.WARNING);
+
+        switch (warningType) {
+            case 1:
+                warningAlert.setTitle("Warning");
+                warningAlert.setContentText("Appointment cannot start or end at the same time as an existing appointment.");
+                warningAlert.showAndWait();
+                break;
+            case 2:
+                warningAlert.setTitle("Warning");
+                warningAlert.setContentText("Appointment cannot start during an an existing appointment.");
+                warningAlert.showAndWait();
+                break;
+            case 3:
+                warningAlert.setTitle("Warning");
+                warningAlert.setContentText("Appointment cannot end during an an existing appointment.");
+                warningAlert.showAndWait();
         }
     }
 

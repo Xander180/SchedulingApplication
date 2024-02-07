@@ -88,7 +88,7 @@ public class AppointmentsViewController implements Initializable {
 
     /**
      * Delete the selected appointment.
-     * Displays a confirmation dialog box before appointment deletion.
+     * Display a confirmation dialog box before appointment deletion.
      *
      * @param event Delete Appointment button.
      */
