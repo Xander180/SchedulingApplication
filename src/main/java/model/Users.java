@@ -45,4 +45,7 @@ public class Users {
     public String getUserPassword() {
         return userPassword;
     }
+
+    @Override
+    public String toString() { return String.valueOf(userID); }
 }

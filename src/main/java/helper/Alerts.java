@@ -1,6 +1,9 @@
 package helper;
 
 import javafx.scene.control.Alert;
+import model.Appointments;
+
+import java.time.format.DateTimeFormatter;
 
 public class Alerts {
 
@@ -36,6 +39,58 @@ public class Alerts {
             case 6:
                 errorAlert.setTitle("Error");
                 errorAlert.setHeaderText("No customer selected.");
+                errorAlert.showAndWait();
+                break;
+            case 7:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment title cannot be left blank.");
+                errorAlert.showAndWait();
+                break;
+            case 8:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment description cannot be left blank.");
+                errorAlert.showAndWait();
+                break;
+            case 9:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment must have a location.");
+                errorAlert.showAndWait();
+                break;
+            case 10:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Please enter an appointment type.");
+                errorAlert.showAndWait();
+                break;
+            case 11:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment must have a start date/time.");
+                errorAlert.showAndWait();
+                break;
+            case 12:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment must have an end date/time.");
+                errorAlert.showAndWait();
+                break;
+            case 13:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment must have an associated customer ID.");
+                errorAlert.showAndWait();
+                break;
+            case 14:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment must have an associated contact.");
+                errorAlert.showAndWait();
+                break;
+            case 15:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment must have an associated user ID.");
+                errorAlert.showAndWait();
+                break;
+            case 16:
+                errorAlert.setTitle("");
+                errorAlert.setHeaderText("Outside of Business Hours");
+                errorAlert.setContentText(String.format("Appointment is outside of business hours: 8:00AM to 10:00PM EST\n" +
+                        "Please schedule between " + Appointments.localStart().format(DateTimeFormatter.ofPattern("hh:mm")) + " - " + Appointments.localEnd().format(DateTimeFormatter.ofPattern("hh:mm")) + "PM local time."));
                 errorAlert.showAndWait();
                 break;
 

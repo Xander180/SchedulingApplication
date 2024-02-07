@@ -2,6 +2,7 @@ package com.wrc195.wrc195task;
 
 import DAO.AppointmentsQuery;
 import helper.Alerts;
+import helper.Misc;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -82,7 +83,7 @@ public class AppointmentsViewController implements Initializable {
      */
     @FXML
     void onActionAddAppt(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "AppointmentAddView.fxml");
+        Misc.jumpToPage(event, "AppointmentAddView.fxml");
     }
 
     /**
@@ -115,7 +116,7 @@ public class AppointmentsViewController implements Initializable {
      */
     @FXML
     void onActionExit(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "MainMenu.fxml");
+        Misc.jumpToPage(event, "MainMenu.fxml");
     }
 
     /**

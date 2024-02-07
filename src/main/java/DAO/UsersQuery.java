@@ -14,7 +14,7 @@ public class UsersQuery {
      *
      * @return all user accounts in the database.
      */
-    public static ObservableList<Users> allUsers() {
+    public static ObservableList<Users> getAllUsers() {
         ObservableList<Users> allUsers = FXCollections.observableArrayList();
 
         try {

@@ -1,12 +1,10 @@
 package com.wrc195.wrc195task;
 
+import helper.Misc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,23 +17,23 @@ public class MainMenuController implements Initializable {
     Parent scene;
     @FXML
     void onActionAppointments(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "AppointmentsView.fxml");
+        Misc.jumpToPage(event, "AppointmentsView.fxml");
     }
 
     @FXML
     void onActionCustomers(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "CustomersView.fxml");
+        Misc.jumpToPage(event, "CustomersView.fxml");
     }
 
     @FXML
     void onActionLogOut(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "LoginView.fxml");
+        Misc.jumpToPage(event, "LoginView.fxml");
 
     }
 
     @FXML
     void onActionReports(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "ReportsView.fxml");
+        Misc.jumpToPage(event, "ReportsView.fxml");
     }
 
     @Override

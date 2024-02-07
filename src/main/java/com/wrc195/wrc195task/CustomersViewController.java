@@ -1,8 +1,8 @@
 package com.wrc195.wrc195task;
 
-import DAO.AppointmentsQuery;
 import DAO.CustomersQuery;
 import helper.Alerts;
+import helper.Misc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +55,7 @@ public class CustomersViewController implements Initializable {
      */
     @FXML
     void onActionAddCustomer(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "AddCustomerView.fxml");
+        Misc.jumpToPage(event, "AddCustomerView.fxml");
     }
 
     /**
@@ -89,7 +89,7 @@ public class CustomersViewController implements Initializable {
      */
     @FXML
     void onActionExit(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "MainMenu.fxml");
+        Misc.jumpToPage(event, "MainMenu.fxml");
 
     }
 

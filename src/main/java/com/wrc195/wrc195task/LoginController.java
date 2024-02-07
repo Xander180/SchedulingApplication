@@ -2,13 +2,12 @@ package com.wrc195.wrc195task;
 
 import DAO.UsersQuery;
 import helper.Alerts;
+import helper.Misc;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -17,13 +16,12 @@ import javafx.stage.Stage;
 import model.Users;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    private final ObservableList<Users> allUsers = UsersQuery.allUsers();
+    private final ObservableList<Users> allUsers = UsersQuery.getAllUsers();
 
     private boolean isFrench;
 
@@ -71,7 +69,7 @@ public class LoginController implements Initializable {
     @FXML
     void onActionLogIn(ActionEvent event) throws IOException {
         if (checkLogin()) {
-            Main.jumpToPage(event, "MainMenu.fxml");
+            Misc.jumpToPage(event, "MainMenu.fxml");
         }
     }
 

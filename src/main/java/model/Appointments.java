@@ -5,11 +5,16 @@ import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Model for Appointments.
@@ -138,4 +143,48 @@ public class Appointments {
         return contactID;
     }
 
+    public static LocalTime localStart() {
+        LocalTime openingBusinessTime = LocalTime.of(8,0);
+        ZoneId easternTime = ZoneId.of("America/New_York");
+        ZoneId localTime = ZoneId.systemDefault();
+
+        LocalDateTime businessEasternTime = LocalDateTime.of(LocalDate.now(), openingBusinessTime);
+        LocalDateTime businessLocalTime = businessEasternTime.atZone(easternTime).withZoneSameInstant(localTime).toLocalDateTime();
+
+        LocalTime businessStartLocalTime = businessLocalTime.toLocalTime();
+
+        return businessStartLocalTime;
+
+    }
+
+    public static LocalTime localEnd() {
+        LocalTime closingBusinessTime = LocalTime.of(22,0);
+        ZoneId easternTime = ZoneId.of("America/New_York");
+        ZoneId localTime = ZoneId.systemDefault();
+
+        LocalDateTime businessEasternTime = LocalDateTime.of(LocalDate.now(), closingBusinessTime);
+        LocalDateTime businessLocalTime = businessEasternTime.atZone(easternTime).withZoneSameInstant(localTime).toLocalDateTime();
+
+        LocalTime businessEndLocalTime = businessLocalTime.toLocalTime();
+
+        return businessEndLocalTime;
+
+    }
+
+    public static boolean businessHours(LocalDateTime appointmentStart, LocalDateTime appointmentEnd) {
+        ZoneId localZone = ZoneId.systemDefault();
+        ZoneId estZone = ZoneId.of("America/New_York");
+
+        LocalDateTime appStartEST = appointmentStart.atZone(localZone).withZoneSameInstant(estZone).toLocalDateTime();
+        LocalDateTime appEndEST = appointmentEnd.atZone(localZone).withZoneSameInstant(estZone).toLocalDateTime();
+
+        LocalDateTime businessStartEST = appStartEST.withHour(8).withMinute(0);
+        LocalDateTime businessEndEST = appEndEST.withHour(22).withMinute(0);
+
+        if (appStartEST.isBefore(businessStartEST) || appEndEST.isAfter(businessEndEST)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.wrc195.wrc195task;
 
+import helper.Misc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -89,7 +90,7 @@ public class ReportsController {
 
     @FXML
     void onActionExit(ActionEvent event) throws IOException {
-        Main.jumpToPage(event, "MainMenu.fxml");
+        Misc.jumpToPage(event, "MainMenu.fxml");
     }
 
     @FXML

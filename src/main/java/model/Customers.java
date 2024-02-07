@@ -137,4 +137,7 @@ public class Customers {
     public String getDivisionName() {
         return divisionName;
     }
+
+    @Override
+    public String toString() { return String.valueOf(customerID); }
 }
