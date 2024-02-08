@@ -1,30 +1,22 @@
 package model;
 
 import DAO.AppointmentsQuery;
-import com.wrc195.wrc195task.Main;
 import helper.Alerts;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 /**
- * Model for Appointments.
+ * Model for Appointment.
  *
  * @author Wilson Ramirez
  */
-public class Appointments {
+public class Appointment {
     static Stage stage;
     static Parent scene;
     private int apptID;
@@ -39,7 +31,7 @@ public class Appointments {
     private int contactID;
 
     /**
-     * Constructor for Appointments in database.
+     * Constructor for Appointment in database.
      * @param apptID Appointment ID.
      * @param apptTitle Appointment title.
      * @param apptDescription Appointment description.
@@ -51,7 +43,7 @@ public class Appointments {
      * @param userID Associated user ID.
      * @param contactID Associated contact ID.
      */
-    public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptType, LocalDateTime apptStart, LocalDateTime apptEnd, int customerID, int userID, int contactID) {
+    public Appointment(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptType, LocalDateTime apptStart, LocalDateTime apptEnd, int customerID, int userID, int contactID) {
         this.apptID = apptID;
         this.apptTitle = apptTitle;
         this.apptDescription = apptDescription;
@@ -192,11 +184,11 @@ public class Appointments {
     }
 
     public static boolean checkApptOverlap(int customerID, LocalDateTime apptStart, LocalDateTime apptEnd) {
-        ObservableList<Appointments> allAppointments = AppointmentsQuery.getAllAppointments();
+        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
         LocalDateTime apptStartCheck;
         LocalDateTime apptEndCheck;
 
-        for (Appointments appointment : allAppointments) {
+        for (Appointment appointment : allAppointments) {
             apptStartCheck = appointment.getApptStart();
             apptEndCheck = appointment.getApptEnd();
             if (customerID != appointment.getCustomerID()) {

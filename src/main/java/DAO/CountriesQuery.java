@@ -3,7 +3,7 @@ package DAO;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Countries;
+import model.Country;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,8 +12,8 @@ import java.sql.Timestamp;
 
 public class CountriesQuery {
 
-    public static ObservableList<Countries> getAllCountries() {
-        ObservableList<Countries> allCountries = FXCollections.observableArrayList();
+    public static ObservableList<Country> getAllCountries() {
+        ObservableList<Country> allCountries = FXCollections.observableArrayList();
 
         try {
             String sql = "SELECT * FROM countries";
@@ -25,7 +25,7 @@ public class CountriesQuery {
             while(rs.next()) {
                 int countryID = rs.getInt("Country_ID");
                 String countryName = rs.getString("Country");
-                Countries country = new Countries(countryID, countryName);
+                Country country = new Country(countryID, countryName);
                 allCountries.add(country);
             }
         } catch (SQLException throwables) {

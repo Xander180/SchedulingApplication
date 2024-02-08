@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.Customers;
+import model.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,28 +20,28 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomersViewController implements Initializable {
-    private static Customers customerToModify;
+    private static Customer customerToModify;
 
     @FXML
-    private TableView<Customers> customersTableView;
+    private TableView<Customer> customersTableView;
 
     @FXML
-    private TableColumn<Customers, String> customerAddressCol;
+    private TableColumn<Customer, String> customerAddressCol;
 
     @FXML
-    private TableColumn<Customers, Integer> customerDivisionIDCol;
+    private TableColumn<Customer, Integer> customerDivisionIDCol;
 
     @FXML
-    private TableColumn<Customers, Integer> customerIDCol;
+    private TableColumn<Customer, Integer> customerIDCol;
 
     @FXML
-    private TableColumn<Customers, String> customerNameCol;
+    private TableColumn<Customer, String> customerNameCol;
 
     @FXML
-    private TableColumn<Customers, String> customerPhoneCol;
+    private TableColumn<Customer, String> customerPhoneCol;
 
     @FXML
-    private TableColumn<Customers, String> customerPostalCol;
+    private TableColumn<Customer, String> customerPostalCol;
 
     Stage stage;
     Parent scene;

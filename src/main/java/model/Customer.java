@@ -1,13 +1,11 @@
 package model;
 
-import javafx.beans.property.StringProperty;
-
 /**
- * Model for Customers.
+ * Model for Customer.
  *
  * @author Wilson Ramirez
  */
-public class Customers {
+public class Customer {
     private int customerID;
     private String customerName;
     private String customerAddress;
@@ -17,7 +15,7 @@ public class Customers {
     private String divisionName;
 
     /**
-     * Constructor for Customers in the database.
+     * Constructor for Customer in the database.
      * @param customerID Customer ID.
      * @param customerName Customer name.
      * @param customerAddress Customer address.
@@ -25,7 +23,7 @@ public class Customers {
      * @param customerPhone Customer phone number.
      * @param divisionID Associated division ID.
      */
-    public Customers(int customerID, String customerName, String customerAddress, String customerZip, String customerPhone, int divisionID) {
+    public Customer(int customerID, String customerName, String customerAddress, String customerZip, String customerPhone, int divisionID) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress = customerAddress;

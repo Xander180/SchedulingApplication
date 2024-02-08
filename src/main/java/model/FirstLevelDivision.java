@@ -5,7 +5,7 @@ package model;
  *
  * @author Wilson Ramirez
  */
-public class FirstLevelDivisions {
+public class FirstLevelDivision {
     private int divisionID;
     private String divisionName;
     private int countryID;
@@ -16,7 +16,7 @@ public class FirstLevelDivisions {
      * @param divisionName Division name.
      * @param countryID Associated country ID.
      */
-    public FirstLevelDivisions(int divisionID, String divisionName, int countryID) {
+    public FirstLevelDivision(int divisionID, String divisionName, int countryID) {
         this.divisionID = divisionID;
         this.divisionName = divisionName;
         this.countryID = countryID;

@@ -1,22 +1,22 @@
 package model;
 
 /**
- * Model for Contacts.
+ * Model for Contact.
  *
  * @author Wilson Ramirez
  */
-public class Contacts {
+public class Contact {
     private int contactID;
     private String contactName;
     private String contactEmail;
 
     /**
-     * Constructor for Contacts in the database.
+     * Constructor for Contact in the database.
      * @param contactID Contact ID.
      * @param contactName Contact name.
      * @param contactEmail Contact email address.
      */
-    public Contacts(int contactID, String contactName, String contactEmail) {
+    public Contact(int contactID, String contactName, String contactEmail) {
         this.contactID = contactID;
         this.contactName = contactName;
         this.contactEmail = contactEmail;

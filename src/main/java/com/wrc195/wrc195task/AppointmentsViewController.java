@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.Appointments;
+import model.Appointment;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,43 +25,43 @@ import java.util.ResourceBundle;
 
 public class AppointmentsViewController implements Initializable {
 
-    private static Appointments apptToModify;
+    private static Appointment apptToModify;
 
     @FXML
     private RadioButton allApptsRBtn;
 
     @FXML
-    private TableColumn<Appointments, Integer> apptContactCol;
+    private TableColumn<Appointment, Integer> apptContactCol;
 
     @FXML
-    private TableColumn<Appointments, Integer> apptCustomerIDCol;
+    private TableColumn<Appointment, Integer> apptCustomerIDCol;
 
     @FXML
-    private TableColumn<Appointments, String> apptDescriptionCol;
+    private TableColumn<Appointment, String> apptDescriptionCol;
 
     @FXML
-    private TableColumn<Appointments, Timestamp> apptEndCol;
+    private TableColumn<Appointment, Timestamp> apptEndCol;
 
     @FXML
-    private TableColumn<Appointments, String> apptIDCol;
+    private TableColumn<Appointment, String> apptIDCol;
 
     @FXML
-    private TableColumn<Appointments, String> apptLocationCol;
+    private TableColumn<Appointment, String> apptLocationCol;
 
     @FXML
-    private TableColumn<Appointments, Timestamp> apptStartCol;
+    private TableColumn<Appointment, Timestamp> apptStartCol;
 
     @FXML
-    private TableColumn<Appointments, String> apptTitleCol;
+    private TableColumn<Appointment, String> apptTitleCol;
 
     @FXML
-    private TableColumn<Appointments, String> apptTypeCol;
+    private TableColumn<Appointment, String> apptTypeCol;
 
     @FXML
-    private TableColumn<Appointments, Integer> apptUserIDCol;
+    private TableColumn<Appointment, Integer> apptUserIDCol;
 
     @FXML
-    private TableView<Appointments> apptsTableView;
+    private TableView<Appointment> apptsTableView;
 
     @FXML
     private RadioButton monthlyApptsRBtn;
@@ -155,12 +155,10 @@ public class AppointmentsViewController implements Initializable {
     @FXML
     void selectAllApptsRBtn(ActionEvent event) {
         try {
-            ObservableList<Appointments> allAppointments = AppointmentsQuery.getAllAppointments();
+            ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
 
-            if (allAppointments != null) {
-                for (Appointments appointments : allAppointments) {
-                    apptsTableView.setItems(allAppointments);
-                }
+            for (Appointment appointments : allAppointments) {
+                apptsTableView.setItems(allAppointments);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -175,20 +173,18 @@ public class AppointmentsViewController implements Initializable {
     @FXML
     void selectMonthlyApptsRBtn(ActionEvent event) {
         try {
-            ObservableList<Appointments> allAppointments = AppointmentsQuery.getAllAppointments();
-            ObservableList<Appointments> appointmentsByMonth = FXCollections.observableArrayList();
+            ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
+            ObservableList<Appointment> appointmentsByMonth = FXCollections.observableArrayList();
 
             LocalDateTime currentMonthStart = LocalDateTime.now().minusMonths(1);
             LocalDateTime currentMonthEnd = LocalDateTime.now().plusMonths(1);
 
-            if (allAppointments != null) {
-                allAppointments.forEach(appointments -> {
-                    if (appointments.getApptEnd().isAfter(currentMonthStart) && appointments.getApptEnd().isBefore(currentMonthEnd)) {
-                        appointmentsByMonth.add(appointments);
-                    }
-                    apptsTableView.setItems(appointmentsByMonth);
-                });
-            }
+            allAppointments.forEach(appointments -> {
+                if (appointments.getApptEnd().isAfter(currentMonthStart) && appointments.getApptEnd().isBefore(currentMonthEnd)) {
+                    appointmentsByMonth.add(appointments);
+                }
+                apptsTableView.setItems(appointmentsByMonth);
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,24 +198,24 @@ public class AppointmentsViewController implements Initializable {
     @FXML
     void selectWeeklyApptsRBtn(ActionEvent event) {
         try {
-            ObservableList<Appointments> allAppointments = AppointmentsQuery.getAllAppointments();
-            ObservableList<Appointments> appointmentsByWeek = FXCollections.observableArrayList();
+            ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
+            ObservableList<Appointment> appointmentsByWeek = FXCollections.observableArrayList();
 
             LocalDateTime currentWeekStart = LocalDateTime.now().minusWeeks(1);
             LocalDateTime currentWeekEnd = LocalDateTime.now().plusWeeks(1);
 
-            if (allAppointments != null) {
-                allAppointments.forEach(appointments -> {
-                    if (appointments.getApptEnd().isAfter(currentWeekStart) && appointments.getApptEnd().isBefore(currentWeekEnd)) {
-                        appointmentsByWeek.add(appointments);
-                    }
-                    apptsTableView.setItems(appointmentsByWeek);
-                });
-            }
+            allAppointments.forEach(appointments -> {
+                if (appointments.getApptEnd().isAfter(currentWeekStart) && appointments.getApptEnd().isBefore(currentWeekEnd)) {
+                    appointmentsByWeek.add(appointments);
+                }
+                apptsTableView.setItems(appointmentsByWeek);
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public static Appointment getApptToModify() { return apptToModify;}
 
 
     /**

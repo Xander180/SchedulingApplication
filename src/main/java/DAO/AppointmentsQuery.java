@@ -3,7 +3,7 @@ package DAO;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Appointments;
+import model.Appointment;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -14,8 +14,8 @@ public class AppointmentsQuery {
      *
      * @return all appointments.
      */
-    public static ObservableList<Appointments> getAllAppointments() {
-        ObservableList<Appointments> allAppointments = FXCollections.observableArrayList();
+    public static ObservableList<Appointment> getAllAppointments() {
+        ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
 
         try {
             String sql = "SELECT * FROM appointments";
@@ -35,7 +35,7 @@ public class AppointmentsQuery {
                 int customerID = rs.getInt("Customer_ID");
                 int userID = rs.getInt("User_ID");
                 int contactID = rs.getInt("Contact_ID");
-                Appointments appointment = new Appointments(apptID, apptTitle, apptDescription, apptLocation, apptType, apptStart, apptEnd, customerID, userID, contactID);
+                Appointment appointment = new Appointment(apptID, apptTitle, apptDescription, apptLocation, apptType, apptStart, apptEnd, customerID, userID, contactID);
                 allAppointments.add(appointment);
             }
         }

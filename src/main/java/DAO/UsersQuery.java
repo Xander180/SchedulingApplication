@@ -3,7 +3,7 @@ package DAO;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Users;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +14,8 @@ public class UsersQuery {
      *
      * @return all user accounts in the database.
      */
-    public static ObservableList<Users> getAllUsers() {
-        ObservableList<Users> allUsers = FXCollections.observableArrayList();
+    public static ObservableList<User> getAllUsers() {
+        ObservableList<User> allUsers = FXCollections.observableArrayList();
 
         try {
             String sql = "SELECT * from users";
@@ -28,7 +28,7 @@ public class UsersQuery {
                 int userID = rs.getInt("User_ID");
                 String userName = rs.getString("User_Name");
                 String password = rs.getString("Password");
-                Users user = new Users(userID, userName, password);
+                User user = new User(userID, userName, password);
                 allUsers.add(user);
             }
         } catch (SQLException throwables) {
@@ -36,5 +36,27 @@ public class UsersQuery {
         }
 
         return allUsers;
+    }
+
+    public static User returnUserID(int userId) {
+        try {
+            String sql = "SELECT User_ID, User_Name, Password FROM users WHERE User_ID = ?";
+            PreparedStatement returnUser = JDBC.getConnection().prepareStatement(sql);
+            returnUser.setInt(1, userId);
+            returnUser.execute();
+
+            ResultSet rs = returnUser.getResultSet();
+
+            rs.next();
+            int searchedUserId = rs.getInt("User_ID");
+            String userName = rs.getString("User_Name");
+            String password = rs.getString("Password");
+
+            User user = new User(searchedUserId, userName, password);
+            return user;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }

@@ -1,11 +1,11 @@
 package model;
 
 /**
- * Model for Users.
+ * Model for User.
  *
  * @author Wilson Ramirez
  */
-public class Users {
+public class User {
     private int userID;
     private String userName;
     private String userPassword;
@@ -16,7 +16,7 @@ public class Users {
      * @param userName Username.
      * @param userPassword Password.
      */
-    public Users(int userID, String userName, String userPassword) {
+    public User(int userID, String userName, String userPassword) {
         this.userID = userID;
         this.userName = userName;
         this.userPassword = userPassword;

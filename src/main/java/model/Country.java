@@ -1,20 +1,20 @@
 package model;
 
 /**
- * Model for Countries.
+ * Model for Country.
  *
  * @author Wilson Ramirez
  */
-public class Countries {
+public class Country {
     private int id;
     private String name;
 
     /**
-     * Constructor for Countries in the database.
+     * Constructor for Country in the database.
      * @param id
      * @param name
      */
-    public Countries(int id, String name) {
+    public Country(int id, String name) {
         this.id = id;
         this.name = name;
     }

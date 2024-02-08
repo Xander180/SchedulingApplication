@@ -10,13 +10,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
-import model.Appointments;
-import model.Contacts;
-import model.Customers;
-import model.Users;
+import model.Appointment;
+import model.Contact;
+import model.Customer;
+import model.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,9 +26,9 @@ import java.util.ResourceBundle;
 
 public class AppointmentAddController implements Initializable {
 
-    private final ObservableList<Contacts> allContacts = ContactsQuery.getAllContacts();
-    private final ObservableList<Customers> allCustomers = CustomersQuery.getAllCustomers();
-    private final ObservableList<Users> allUsers = UsersQuery.getAllUsers();
+    private final ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
+    private final ObservableList<Customer> allCustomers = CustomersQuery.getAllCustomers();
+    private final ObservableList<User> allUsers = UsersQuery.getAllUsers();
 
     //private int generatedID = 1;
 
@@ -62,13 +60,13 @@ public class AppointmentAddController implements Initializable {
     private TextField apptTypeTxt;
 
     @FXML
-    private ChoiceBox<Contacts> contactCBox;
+    private ChoiceBox<Contact> contactCBox;
 
     @FXML
-    private ChoiceBox<Customers> customerIDCBox;
+    private ChoiceBox<Customer> customerIDCBox;
 
     @FXML
-    private ChoiceBox<Users> userIDCBox;
+    private ChoiceBox<User> userIDCBox;
 
     /**
      * Cancel current appointment form
@@ -99,7 +97,7 @@ public class AppointmentAddController implements Initializable {
         String type = apptTypeTxt.getText();
 
         // Handle null pointer exception
-        Customers customer = customerIDCBox.getValue();
+        Customer customer = customerIDCBox.getValue();
         if (customer == null) {
             Alerts.getError(13);
             return;
@@ -107,7 +105,7 @@ public class AppointmentAddController implements Initializable {
         int customerID = customerIDCBox.getValue().getCustomerID();
 
         // Handle null pointer exception
-        Contacts contact = contactCBox.getValue();
+        Contact contact = contactCBox.getValue();
         if (contact == null) {
             Alerts.getError(14);
             return;
@@ -115,7 +113,7 @@ public class AppointmentAddController implements Initializable {
         int contactID = contactCBox.getValue().getContactID();
 
         // Handle null pointer exception
-        Users user = userIDCBox.getValue();
+        User user = userIDCBox.getValue();
         if (user == null) {
             Alerts.getError(15);
             return;
@@ -149,9 +147,9 @@ public class AppointmentAddController implements Initializable {
             Alerts.getError(9);
         } else if (type.isEmpty() || type.isBlank()) {
             Alerts.getError(10);
-        } else if (Appointments.businessHours(start, end)) {
+        } else if (Appointment.businessHours(start, end)) {
             Alerts.getError(16);
-        } else if (Appointments.checkApptOverlap(customerID, start, end)) {
+        } else if (Appointment.checkApptOverlap(customerID, start, end)) {
         } else {
             AppointmentsQuery.addAppointment(title, description, location, type, start, end, customerID, userID, contactID);
             Alerts.getInfo(1);
@@ -161,7 +159,7 @@ public class AppointmentAddController implements Initializable {
 
     /*
     private int generateID() {
-        for (Appointments appointment : AppointmentsQuery.getAllAppointments()) {
+        for (Appointment appointment : AppointmentsQuery.getAllAppointments()) {
             if (appointment.getApptID() == generatedID) {
                 generatedID++;
             }

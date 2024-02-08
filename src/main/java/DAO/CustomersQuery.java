@@ -1,11 +1,9 @@
 package DAO;
 
 import helper.JDBC;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Appointments;
-import model.Customers;
+import model.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,8 +15,8 @@ public class CustomersQuery {
      *
      * @return all customers.
      */
-    public static ObservableList<Customers> getAllCustomers() {
-        ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
+    public static ObservableList<Customer> getAllCustomers() {
+        ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 
         try {
             String sql = "SELECT * FROM customers";
@@ -34,7 +32,7 @@ public class CustomersQuery {
                 String customerPostal = rs.getString("Postal_Code");
                 String customerPhone = rs.getString("Phone");
                 int divisionID = rs.getInt("Division_ID");
-                Customers customer = new Customers(customerID, customerName, customerAddress, customerPostal, customerPhone, divisionID);
+                Customer customer = new Customer(customerID, customerName, customerAddress, customerPostal, customerPhone, divisionID);
                 allCustomers.add(customer);
             }
         } catch (SQLException throwables) {
@@ -109,4 +107,29 @@ public class CustomersQuery {
         }
     }
 
+    public static Customer returnCustomer(int customerId) {
+        try {
+            String sql = "SELECT * FROM customers WHERE Customer_ID = ?";
+            PreparedStatement returnCustomer = JDBC.getConnection().prepareStatement(sql);
+            returnCustomer.setInt(1, customerId);
+            returnCustomer.execute();
+            ResultSet rs = returnCustomer.executeQuery();
+
+            while (rs.next()) {
+                int returnedCustomerId = rs.getInt("Customer_ID");
+                String customerName = rs.getString("Customer_Name");
+                String customerAddress = rs.getString("Address");
+                String customerPostal = rs.getString("Postal_Code");
+                String customerPhone = rs.getString("Phone");
+                int divisionID = rs.getInt("Division_ID");
+
+                Customer customer = new Customer(returnedCustomerId, customerName, customerAddress, customerPostal, customerPhone, divisionID);
+                return customer;
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 }

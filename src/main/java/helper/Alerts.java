@@ -2,9 +2,8 @@ package helper;
 
 import javafx.event.Event;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import model.Appointments;
+import model.Appointment;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -95,7 +94,7 @@ public class Alerts {
                 errorAlert.setTitle("Error");
                 errorAlert.setHeaderText("Outside of Business Hours");
                 errorAlert.setContentText(String.format("Appointment is outside of business hours: 8:00AM to 10:00PM EST\n" +
-                        "Please schedule between " + Appointments.localStart().format(DateTimeFormatter.ofPattern("hh:mm")) + " - " + Appointments.localEnd().format(DateTimeFormatter.ofPattern("hh:mm")) + "PM local time."));
+                        "Please schedule between " + Appointment.localStart().format(DateTimeFormatter.ofPattern("hh:mm")) + " - " + Appointment.localEnd().format(DateTimeFormatter.ofPattern("hh:mm")) + "PM local time."));
                 errorAlert.showAndWait();
                 break;
 
@@ -113,7 +112,9 @@ public class Alerts {
                 infoAlert.showAndWait();
                 break;
             case 2:
-
+                infoAlert.setTitle("Appointment Confirmed");
+                infoAlert.setHeaderText("Appointment has been updated.");
+                infoAlert.showAndWait();
         }
     }
 
@@ -128,12 +129,14 @@ public class Alerts {
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     Misc.jumpToPage(event, "LoginView.fxml");
                 }
+                break;
             case 2:
                 confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Data for this form will not be saved. Are you sure?");
                 result = confirmAlert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     Misc.jumpToPage(event, "AppointmentsView.fxml");
                 }
+                break;
             case 3:
 
         }

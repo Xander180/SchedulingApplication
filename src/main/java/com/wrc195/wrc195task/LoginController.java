@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Users;
+import model.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,7 +21,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    private final ObservableList<Users> allUsers = UsersQuery.getAllUsers();
+    private final ObservableList<User> allUsers = UsersQuery.getAllUsers();
 
     private boolean isFrench;
 
@@ -81,7 +81,7 @@ public class LoginController implements Initializable {
 
         if (!validateEmptyFields()) return false;
 
-        for (Users user : allUsers) {
+        for (User user : allUsers) {
             if (usernameTxt.getText().equals(user.getUserName()) || passwordField.getText().equals(user.getUserPassword()))  return true;
         }
         if (isFrench) {
