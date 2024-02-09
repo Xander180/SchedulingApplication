@@ -55,7 +55,7 @@ public class CustomersViewController implements Initializable {
      */
     @FXML
     void onActionAddCustomer(ActionEvent event) throws IOException {
-        Misc.jumpToPage(event, "AddCustomerView.fxml");
+        Misc.jumpToPage(event, "CustomerAddView.fxml");
     }
 
     /**

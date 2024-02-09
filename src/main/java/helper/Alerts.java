@@ -97,7 +97,36 @@ public class Alerts {
                         "Please schedule between " + Appointment.localStart().format(DateTimeFormatter.ofPattern("hh:mm")) + " - " + Appointment.localEnd().format(DateTimeFormatter.ofPattern("hh:mm")) + "PM local time."));
                 errorAlert.showAndWait();
                 break;
-
+            case 17:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Customer name cannot be left blank.");
+                errorAlert.showAndWait();
+                break;
+            case 18:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Customer address cannot be left blank.");
+                errorAlert.showAndWait();
+                break;
+            case 19:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Customer postal code cannot be left blank.");
+                errorAlert.showAndWait();
+                break;
+            case 20:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Customer phone number cannot be left blank.");
+                errorAlert.showAndWait();
+                break;
+            case 21:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Customer must have an associated country.");
+                errorAlert.showAndWait();
+                break;
+            case 22:
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Appointment must have an associated first level division.");
+                errorAlert.showAndWait();
+                break;
         }
     }
 
@@ -138,7 +167,12 @@ public class Alerts {
                 }
                 break;
             case 3:
-
+                confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Data for this form will not be saved. Are you sure?");
+                result = confirmAlert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    Misc.jumpToPage(event, "CustomersView.fxml");
+                }
+                break;
         }
     }
 

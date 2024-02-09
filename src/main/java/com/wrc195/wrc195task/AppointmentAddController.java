@@ -69,7 +69,7 @@ public class AppointmentAddController implements Initializable {
     private ChoiceBox<User> userIDCBox;
 
     /**
-     * Cancel current appointment form
+     * Cancel current form
      * Display a confirmation dialog box
      *
      * @param event Cancel form button
@@ -170,7 +170,7 @@ public class AppointmentAddController implements Initializable {
      */
 
     /**
-     * Initialize controller and populate table view.
+     * Initialize controller and populate Choice Boxes and Spinners.
      *
      * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.

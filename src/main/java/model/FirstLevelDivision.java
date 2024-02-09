@@ -45,4 +45,7 @@ public class FirstLevelDivision {
     public int getCountryID() {
         return countryID;
     }
+
+    @Override
+    public String toString() { return divisionName; }
 }

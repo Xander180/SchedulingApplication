@@ -134,7 +134,6 @@ public class AppointmentModifyController implements Initializable {
             Alerts.getError(10);
         } else if (Appointment.businessHours(start, end)) {
             Alerts.getError(16);
-        } else if (Appointment.checkApptOverlap(customerID, start, end)) {
         } else {
             AppointmentsQuery.updateAppointment(apptID, title, description, location, type, start, end, customerID, userID, contactID);
             Alerts.getInfo(2);

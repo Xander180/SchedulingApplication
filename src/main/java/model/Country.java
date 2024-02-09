@@ -6,32 +6,35 @@ package model;
  * @author Wilson Ramirez
  */
 public class Country {
-    private int id;
-    private String name;
+    private final int countryID;
+    private final String countryName;
 
     /**
      * Constructor for Country in the database.
-     * @param id
-     * @param name
+     * @param countryID
+     * @param countryName
      */
-    public Country(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public Country(int countryID, String countryName) {
+        this.countryID = countryID;
+        this.countryName = countryName;
     }
 
     /**
      *
      * @return country ID
      */
-    public int getId() {
-        return id;
+    public int getCountryID() {
+        return countryID;
     }
 
     /**
      *
      * @return country Name.
      */
-    public String getName() {
-        return name;
+    public String getCountryName() {
+        return countryName;
     }
+
+    @Override
+    public String toString() { return countryName; }
 }
