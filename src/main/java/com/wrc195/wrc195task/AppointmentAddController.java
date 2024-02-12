@@ -157,18 +157,6 @@ public class AppointmentAddController implements Initializable {
         }
     }
 
-    /*
-    private int generateID() {
-        for (Appointment appointment : AppointmentsQuery.getAllAppointments()) {
-            if (appointment.getApptID() == generatedID) {
-                generatedID++;
-            }
-        }
-        return generatedID;
-    }
-    /*
-     */
-
     /**
      * Initialize controller and populate Choice Boxes and Spinners.
      *
@@ -177,14 +165,10 @@ public class AppointmentAddController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //generatedID = generateID();
-
         contactCBox.getItems().addAll(allContacts);
         customerIDCBox.getItems().addAll(allCustomers);
         userIDCBox.getItems().addAll(allUsers);
         apptStartTimeSpinner.setValueFactory(Misc.factoryStart);
         apptEndTimeSpinner.setValueFactory(Misc.factoryEnd);
-
-
     }
 }

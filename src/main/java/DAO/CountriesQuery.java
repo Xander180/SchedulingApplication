@@ -4,6 +4,7 @@ import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Country;
+import model.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +34,27 @@ public class CountriesQuery {
         }
 
         return allCountries;
+    }
+
+    public static Country returnCountry(int countryID) {
+        try {
+            String sql = "SELECT * FROM countries WHERE Country_ID = ?";
+            PreparedStatement returnCountry = JDBC.getConnection().prepareStatement(sql);
+            returnCountry.setInt(1, countryID);
+            returnCountry.execute();
+            ResultSet rs = returnCountry.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("Country_ID");
+                String countryName = rs.getString("Country");
+                Country country = new Country(id, countryName);
+                return country;
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     public static void checkDateConversion() {

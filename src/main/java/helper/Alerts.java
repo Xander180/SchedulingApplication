@@ -127,6 +127,10 @@ public class Alerts {
                 errorAlert.setHeaderText("Appointment must have an associated first level division.");
                 errorAlert.showAndWait();
                 break;
+            case 23:
+
+            case 24:
+
         }
     }
 
@@ -143,6 +147,10 @@ public class Alerts {
             case 2:
                 infoAlert.setTitle("Appointment Confirmed");
                 infoAlert.setHeaderText("Appointment has been updated.");
+                infoAlert.showAndWait();
+            case 3:
+                infoAlert.setTitle("Customer Created");
+                infoAlert.setHeaderText("Customer has been created.");
                 infoAlert.showAndWait();
         }
     }
@@ -173,6 +181,8 @@ public class Alerts {
                     Misc.jumpToPage(event, "CustomersView.fxml");
                 }
                 break;
+            case 4:
+
         }
     }
 

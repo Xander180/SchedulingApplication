@@ -1,6 +1,7 @@
 package com.wrc195.wrc195task;
 
 import DAO.CountriesQuery;
+import DAO.CustomersQuery;
 import DAO.FirstLevelDivisionsQuery;
 import helper.Alerts;
 import helper.Misc;
@@ -16,6 +17,7 @@ import model.FirstLevelDivision;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class CustomerAddController implements Initializable {
@@ -57,15 +59,49 @@ public class CustomerAddController implements Initializable {
         Alerts.getConfirmation(event, 3);
     }
 
+    /**
+     * Create a new customer entry in the database.
+     * Check for blank/empty text boxes, as well as unselected choice boxes.
+     *
+     * @param event Save customer button.
+     * @throws SQLException For unhandled SQL exceptions.
+     * @throws IOException For FXMLLoader.
+     */
     @FXML
-    void onActionSaveCustomer(ActionEvent event) {
+    void onActionSaveCustomer(ActionEvent event) throws SQLException, IOException {
         String name = customerNameTxt.getText();
         String address = customerAddressTxt.getText();
         String postal = customerPostalTxt.getText();
         String phone = customerPhoneTxt.getText();
 
+        // Handle null pointer exception
+        Country country = customerCountryCBox.getValue();
+        if (country == null) {
+            Alerts.getError(21);
+            return;
+        }
 
+        FirstLevelDivision FLD = customerDivisionCBox.getValue();
+        if (FLD == null) {
+            Alerts.getError(22);
+            return;
+        }
+        int customerDivision = FLD.getDivisionID();
 
+        // Handle blank/empty text boxes
+        if (name.isEmpty() || name.isBlank()) {
+            Alerts.getError(17);
+        } else if (address.isEmpty() || address.isBlank()) {
+            Alerts.getError(18);
+        } else if (postal.isEmpty() || postal.isBlank()) {
+            Alerts.getError(19);
+        } else if (phone.isEmpty() || phone.isBlank()) {
+            Alerts.getError(20);
+        } else {
+            CustomersQuery.addCustomer(name, address, postal, phone, customerDivision);
+            Alerts.getInfo(3);
+            Misc.jumpToPage(event, "CustomersView.fxml");
+        }
     }
 
     /**
@@ -88,8 +124,10 @@ public class CustomerAddController implements Initializable {
     }
 
     /**
-     * @param url
-     * @param resourceBundle
+     * Initialize controller and populate Country choicebox
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

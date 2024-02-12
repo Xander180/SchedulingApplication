@@ -1,8 +1,10 @@
 package com.wrc195.wrc195task;
 
+import DAO.AppointmentsQuery;
 import DAO.CustomersQuery;
 import helper.Alerts;
 import helper.Misc;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.Customer;
 
 import java.io.IOException;
@@ -67,10 +70,37 @@ public class CustomersViewController implements Initializable {
      */
     @FXML
     void onActionDeleteCustomer(ActionEvent event) {
+        int totalAppointments = 0;
         customerToModify = customersTableView.getSelectionModel().getSelectedItem();
+        ObservableList<Appointment> appointmentsList = AppointmentsQuery.getAllAppointments();
 
         if (customerToModify == null) {
             Alerts.getError(6);
+            return;
+        }
+
+        int customerID = customerToModify.getCustomerID();
+        for (Appointment appointment : appointmentsList) {
+            if (appointment.getCustomerID() == customerID) {
+                totalAppointments++;
+            }
+        }
+        if (totalAppointments > 0) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "There are " + totalAppointments + " appointments associated with this customer.\n" +
+                    "Press OK to delete customer along with all associated appointments\n" +
+                    "or press Cancel to return");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                for (Appointment appointment : appointmentsList) {
+                    if (appointment.getCustomerID() == customerID) {
+                        AppointmentsQuery.deleteAppointment(appointment.getApptID());
+                    }
+                }
+                CustomersQuery.deleteCustomer(customerID);
+                customersTableView.setItems(CustomersQuery.getAllCustomers());
+                // Deletion confirmation alert
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this customer?");
 
@@ -78,6 +108,7 @@ public class CustomersViewController implements Initializable {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 CustomersQuery.deleteCustomer(customerToModify.getCustomerID());
                 customersTableView.setItems(CustomersQuery.getAllCustomers());
+                // Deletion confirmation alert
             }
         }
     }
@@ -120,6 +151,8 @@ public class CustomersViewController implements Initializable {
             stage.show();
         }
     }
+
+    public static Customer getCustomerToModify() { return customerToModify; }
 
     /**
      * Initialize controller and populate table view.

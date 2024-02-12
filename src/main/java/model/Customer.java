@@ -11,6 +11,7 @@ public class Customer {
     private String customerAddress;
     private String customerZip;
     private String customerPhone;
+    private int countryID;
     private int divisionID;
     private String divisionName;
 
@@ -23,13 +24,19 @@ public class Customer {
      * @param customerPhone Customer phone number.
      * @param divisionID Associated division ID.
      */
-    public Customer(int customerID, String customerName, String customerAddress, String customerZip, String customerPhone, int divisionID) {
+    public Customer(int customerID, String customerName, String customerAddress, String customerZip, String customerPhone, int countryID, int divisionID) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerZip = customerZip;
         this.customerPhone = customerPhone;
+        this.countryID = countryID;
         this.divisionID = divisionID;
+    }
+
+    public Customer(int returnedCustomerId, String customerName) {
+        this.customerID = returnedCustomerId;
+        this.customerName = customerName;
     }
 
     /**
@@ -110,6 +117,14 @@ public class Customer {
      */
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
+    }
+
+    public int getCountryID() {
+        return countryID;
+    }
+
+    public void setCountryID(int countryID) {
+        this.countryID = countryID;
     }
 
     /**

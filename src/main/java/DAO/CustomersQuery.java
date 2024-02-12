@@ -19,7 +19,10 @@ public class CustomersQuery {
         ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM customers";
+            String sql = "SELECT customers.Customer_ID, customers.Customer_Name, customers.Address, customers.Postal_Code, customers.Phone, customers.Division_ID, " +
+                    "first_level_divisions.Division, first_level_divisions.Country_ID, countries.Country FROM customers " +
+                    "JOIN first_level_divisions ON customers.Division_ID = first_level_divisions.Division_ID " +
+                    "JOIN countries ON countries.Country_ID = first_level_divisions.Country_ID ORDER BY customers.Customer_ID";
 
             PreparedStatement getCustomers = JDBC.getConnection().prepareStatement(sql);
 
@@ -32,7 +35,8 @@ public class CustomersQuery {
                 String customerPostal = rs.getString("Postal_Code");
                 String customerPhone = rs.getString("Phone");
                 int divisionID = rs.getInt("Division_ID");
-                Customer customer = new Customer(customerID, customerName, customerAddress, customerPostal, customerPhone, divisionID);
+                int countryID = rs.getInt("Country_ID");
+                Customer customer = new Customer(customerID, customerName, customerAddress, customerPostal, customerPhone, countryID, divisionID);
                 allCustomers.add(customer);
             }
         } catch (SQLException throwables) {
@@ -53,7 +57,7 @@ public class CustomersQuery {
      * @throws SQLException for unhandled SQL exceptions
      */
     public static void addCustomer(String name, String address, String postal, String phone, int divisionID) throws SQLException {
-        String sql = "INSERT INTO customers(Customer_Name, Address, Postal_Code, Phone, Division_ID VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO customers(Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?, ?, ?, ?, ?)";
         PreparedStatement addCustomer = JDBC.getConnection().prepareStatement(sql);
 
         addCustomer.setString(1, name);
@@ -123,7 +127,7 @@ public class CustomersQuery {
                 String customerPhone = rs.getString("Phone");
                 int divisionID = rs.getInt("Division_ID");
 
-                Customer customer = new Customer(returnedCustomerId, customerName, customerAddress, customerPostal, customerPhone, divisionID);
+                Customer customer = new Customer(returnedCustomerId, customerName);
                 return customer;
 
             }

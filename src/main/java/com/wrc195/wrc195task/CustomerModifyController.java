@@ -1,51 +1,37 @@
 package com.wrc195.wrc195task;
 
+import DAO.CountriesQuery;
+import DAO.FirstLevelDivisionsQuery;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import model.Country;
+import model.Customer;
+import model.FirstLevelDivision;
 
-public class CustomerModifyController {
-    @FXML
-    private TableColumn<?, ?> assocApptContactCol;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private TableColumn<?, ?> assocApptDescCol;
+public class CustomerModifyController implements Initializable {
 
-    @FXML
-    private TableColumn<?, ?> assocApptEndCol;
+    private final ObservableList<Country> allCountries = CountriesQuery.getAllCountries();
 
-    @FXML
-    private TableColumn<?, ?> assocApptIDCol;
-
-    @FXML
-    private TableColumn<?, ?> assocApptLocationCol;
-
-    @FXML
-    private TableColumn<?, ?> assocApptStartCol;
-
-    @FXML
-    private TableColumn<?, ?> assocApptTitleCol;
-
-    @FXML
-    private TableColumn<?, ?> assocApptTypeCol;
-
-    @FXML
-    private TableColumn<?, ?> assocApptUserIDCol;
-
-    @FXML
-    private TableView<?> assocApptsTableView;
+    private final ObservableList<FirstLevelDivision> allDivisions = FirstLevelDivisionsQuery.getAllDivisions();
+    private Customer selectedCustomer;
 
     @FXML
     private TextField customerAddressTxt;
 
     @FXML
-    private ComboBox<?> customerCountryCBox;
+    private ComboBox<Country> customerCountryCBox;
 
     @FXML
-    private ComboBox<?> customerDivisionCBox;
+    private ComboBox<FirstLevelDivision> customerDivisionCBox;
 
     @FXML
     private TextField customerIDTxt;
@@ -65,12 +51,28 @@ public class CustomerModifyController {
     }
 
     @FXML
-    void onActionRemoveAssocAppt(ActionEvent event) {
+    void onActionSaveCustomer(ActionEvent event) {
 
     }
 
-    @FXML
-    void onActionSaveCustomer(ActionEvent event) {
+    /**
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        selectedCustomer = CustomersViewController.getCustomerToModify();
+        customerCountryCBox.getItems().addAll(allCountries);
+        customerDivisionCBox.getItems().addAll(allDivisions);
+
+        customerIDTxt.setText(String.valueOf(selectedCustomer.getCustomerID()));
+        customerNameTxt.setText(String.valueOf(selectedCustomer.getCustomerName()));
+        customerAddressTxt.setText(String.valueOf(selectedCustomer.getCustomerAddress()));
+        customerPostalTxt.setText(String.valueOf(selectedCustomer.getCustomerZip()));
+        customerPhoneTxt.setText(String.valueOf(selectedCustomer.getCustomerPhone()));
+        customerCountryCBox.setValue(CountriesQuery.returnCountry(selectedCustomer.getCountryID()));
+        customerDivisionCBox.setValue(FirstLevelDivisionsQuery.returnDivison(selectedCustomer.getDivisionID()));
+
 
     }
 }

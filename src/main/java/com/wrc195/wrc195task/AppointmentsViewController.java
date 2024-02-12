@@ -105,6 +105,7 @@ public class AppointmentsViewController implements Initializable {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 AppointmentsQuery.deleteAppointment(apptToModify.getApptID());
                 apptsTableView.setItems(AppointmentsQuery.getAllAppointments());
+                // Deletion confirmation alert
             }
         }
     }

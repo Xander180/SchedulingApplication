@@ -76,7 +76,7 @@
         </VBox>
       <VBox alignment="TOP_CENTER" layoutY="380.0" prefHeight="300.0" prefWidth="890.0">
          <children>
-            <TableView fx:id="assocApptsTableView" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="assocApptsTableView" prefHeight="200.0" prefWidth="200.0" visible="false">
               <columns>
                 <TableColumn fx:id="assocApptIDCol" prefWidth="44.0" text="ID" />
                 <TableColumn fx:id="assocApptTitleCol" prefWidth="79.0" text="Title" />
@@ -95,7 +95,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button mnemonicParsing="false" onAction="#onActionRemoveAssocAppt" text="Delete Appointment">
+            <Button mnemonicParsing="false" onAction="#onActionRemoveAssocAppt" text="Delete Appointment" visible="false">
                <VBox.margin>
                   <Insets right="10.0" />
                </VBox.margin>
