@@ -1,6 +1,7 @@
 package helper;
 
 import com.wrc195.wrc195task.Main;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -78,7 +79,7 @@ public class Misc {
      * @param pageName .fxml scene to switch to.
      * @throws IOException From FXMLLoader.
      */
-    public static void jumpToPage(Event event, String pageName) throws IOException {
+    public static void jumpToPage(ActionEvent event, String pageName) throws IOException {
         Main.stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         Main.scene = FXMLLoader.load(Main.class.getResource(pageName));
         Main.stage.setScene(new Scene(Main.scene));

@@ -6,9 +6,9 @@ package model;
  * @author Wilson Ramirez
  */
 public class FirstLevelDivision {
-    private int divisionID;
-    private String divisionName;
-    private int countryID;
+    private final int divisionID;
+    private final String divisionName;
+    private final int countryID;
 
     /**
      * Constructor for first level divisions in the database.

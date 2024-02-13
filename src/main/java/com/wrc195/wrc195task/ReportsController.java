@@ -1,90 +1,117 @@
 package com.wrc195.wrc195task;
 
+import DAO.AppointmentsQuery;
+import DAO.ContactsQuery;
+import helper.Alerts;
 import helper.Misc;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Appointment;
+import model.Contact;
+import model.Country;
 
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
-public class ReportsController {
-    @FXML
-    private TableColumn<?, ?> appointmentCustomerID;
+public class ReportsController implements Initializable {
+    private final ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
 
-    @FXML
-    private TableColumn<?, ?> apptContact;
-
-    @FXML
-    private TableColumn<?, ?> apptDescriptionCol;
+    private final ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
 
     @FXML
-    private TableColumn<?, ?> apptEnd;
+    private TableColumn<Appointment, Integer> apptCustomerIDCol;
 
     @FXML
-    private TableColumn<?, ?> apptIDCol;
+    private TableColumn<Appointment, String> apptDescriptionCol;
 
     @FXML
-    private TableColumn<?, ?> apptLocation;
+    private TableColumn<Appointment, LocalDateTime> apptEndCol;
 
     @FXML
-    private TableView<?> apptMonthTableView;
+    private TableColumn<Appointment, Integer> apptIDCol;
 
     @FXML
-    private TableColumn<?, ?> apptMonthTotalsCol;
+    private TableColumn<Appointment, String> apptLocationCol;
 
     @FXML
-    private TableColumn<?, ?> apptStartCol;
+    private TableView<Appointment> apptMonthTableView;
 
     @FXML
-    private TableColumn<?, ?> apptTitleCol;
+    private TableColumn<Appointment, Integer> apptMonthTotalsCol;
 
     @FXML
-    private TableColumn<?, ?> apptTotalsByMonthCol;
+    private TableColumn<Appointment, LocalDateTime> apptStartCol;
+
+    @FXML
+    private TableColumn<Appointment, String> apptTitleCol;
+
+    @FXML
+    private TableColumn<Appointment, Integer> apptTotalsByMonthCol;
 
     @FXML
     private Tab apptTotalsTab;
 
     @FXML
-    private TableColumn<?, ?> apptTotalsTypeCol;
+    private TableColumn<Appointment, String> apptTotalsTypeCol;
 
     @FXML
-    private TableColumn<?, ?> apptTypeCol;
+    private TableColumn<Appointment, String> apptTypeCol;
 
     @FXML
-    private TableView<?> apptTypeTableView;
+    private TableView<Appointment> apptTypeTableView;
 
     @FXML
-    private TableColumn<?, ?> apptTypeTotalCol;
+    private TableColumn<Appointment, Integer> apptTypeTotalCol;
 
     @FXML
-    private ComboBox<?> contactScheduleContactBox;
+    private ComboBox<Contact> contactCBox;
 
     @FXML
     private Tab contactScheduleTab;
 
     @FXML
-    private TableView<?> contactScheduleTableView;
+    private TableView<Appointment> contactScheduleTableView;
 
     @FXML
-    private TableColumn<?, ?> countryNameCol;
+    private TableColumn<Country, String> countryNameCol;
 
     @FXML
-    private TableColumn<?, ?> countryTotalsCol;
+    private TableColumn<Country, Integer> countryTotalsCol;
 
     @FXML
-    private TableView<?> countryTotalsTableView;
+    private TableView<Country> countryTotalsTableView;
 
     @FXML
     private Tab customerByCountryTab;
 
     @FXML
-    private TableColumn<?, ?> tableContactID;
+    private TableColumn<Appointment, Integer> apptContactIDCol;
 
     @FXML
-    void appointmentDataByContact(ActionEvent event) {
+    void onActionSortByContact(ActionEvent event) {
+        int contactID = contactCBox.getValue().getContactID();
+
+        contactScheduleTableView.setItems(AppointmentsQuery.getUserAppointments(contactID));
+
+        apptIDCol.setCellValueFactory(new PropertyValueFactory<>("apptID"));
+        apptTitleCol.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
+        apptDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
+        apptLocationCol.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
+        apptTypeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        apptStartCol.setCellValueFactory(new PropertyValueFactory<>("apptStart"));
+        apptEndCol.setCellValueFactory(new PropertyValueFactory<>("apptEnd"));
+        apptCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        apptContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
 
     }
 
@@ -95,7 +122,9 @@ public class ReportsController {
 
     @FXML
     void onSelectApptsTotals(ActionEvent event) {
-
+        apptTypeTableView.setItems(AppointmentsQuery.getAppointmentType());
+        apptTotalsTypeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        apptTypeTotalCol.setCellValueFactory(new PropertyValueFactory<>("apptTypeTotal"));
     }
 
     @FXML
@@ -105,6 +134,17 @@ public class ReportsController {
 
     @FXML
     void onSelectCustomerByCountry(ActionEvent event) {
+
+    }
+
+    /**
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        contactCBox.getItems().addAll(allContacts);
+
 
     }
 }

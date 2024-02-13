@@ -3,6 +3,7 @@ package helper;
 import com.wrc195.wrc195task.AppointmentsViewController;
 import com.wrc195.wrc195task.CustomerAddController;
 import com.wrc195.wrc195task.CustomersViewController;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -180,7 +181,7 @@ public class Alerts {
         }
     }
 
-    public static void getConfirmation(Event event, int confirmType) throws IOException {
+    public static void getConfirmation(ActionEvent event, int confirmType) throws IOException {
         Alert confirmAlert;
         Optional<ButtonType> result;
 

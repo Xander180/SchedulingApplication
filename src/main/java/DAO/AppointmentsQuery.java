@@ -156,4 +156,22 @@ public class AppointmentsQuery {
         }
         return userAppointments;
     }
+
+    public static ObservableList<Appointment> getAppointmentType() {
+        ObservableList<Appointment> appointmentListType = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT Type, Count(*) AS NUM FROM appointments GROUP BY Type";
+            PreparedStatement getApptType = JDBC.getConnection().prepareStatement(sql);
+            ResultSet rs = getApptType.executeQuery();
+            while (rs.next()) {
+                String apptType = rs.getString("Type");
+                int apptTypeTotal = rs.getInt("NUM");
+                Appointment results = new Appointment(apptType, apptTypeTotal);
+                appointmentListType.add(results);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return appointmentListType;
+    }
 }

@@ -6,9 +6,9 @@ package model;
  * @author Wilson Ramirez
  */
 public class User {
-    private int userID;
-    private String userName;
-    private String userPassword;
+    private final int userID;
+    private final String userName;
+    private final String userPassword;
 
     /**
      * Constructor for User accounts in the database.

@@ -17,13 +17,13 @@ import java.time.ZoneId;
  * @author Wilson Ramirez
  */
 public class Appointment {
-    static Stage stage;
-    static Parent scene;
     private int apptID;
     private String apptTitle;
     private String apptDescription;
     private String apptLocation;
-    private String apptType;
+    private final String apptType;
+
+    private int apptTypeTotal;
     private LocalDateTime apptStart;
     private LocalDateTime apptEnd;
     private int customerID;
@@ -54,6 +54,11 @@ public class Appointment {
         this.customerID = customerID;
         this.userID = userID;
         this.contactID = contactID;
+    }
+
+    public Appointment(String apptType, int apptTypeTotal) {
+        this.apptType = apptType;
+        this.apptTypeTotal = apptTypeTotal;
     }
 
     /**
@@ -96,6 +101,14 @@ public class Appointment {
      */
     public String getApptType() {
         return apptType;
+    }
+
+    public int getApptTypeTotal() {
+        return apptTypeTotal;
+    }
+
+    public void setApptTypeTotal(int apptTypeTotal) {
+        this.apptTypeTotal = apptTypeTotal;
     }
 
     /**
@@ -176,11 +189,7 @@ public class Appointment {
         LocalDateTime businessStartEST = appStartEST.withHour(8).withMinute(0);
         LocalDateTime businessEndEST = appEndEST.withHour(22).withMinute(0);
 
-        if (appStartEST.isBefore(businessStartEST) || appEndEST.isAfter(businessEndEST)) {
-            return true;
-        } else {
-            return false;
-        }
+        return appStartEST.isBefore(businessStartEST) || appEndEST.isAfter(businessEndEST);
     }
 
     public static boolean checkApptOverlap(int customerID, LocalDateTime apptStart, LocalDateTime apptEnd) {

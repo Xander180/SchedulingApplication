@@ -6,9 +6,9 @@ package model;
  * @author Wilson Ramirez
  */
 public class Contact {
-    private int contactID;
-    private String contactName;
-    private String contactEmail;
+    private final int contactID;
+    private final String contactName;
+    private final String contactEmail;
 
     /**
      * Constructor for Contact in the database.
