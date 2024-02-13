@@ -99,13 +99,13 @@ public class AppointmentsViewController implements Initializable {
         if (apptToModify == null) {
             Alerts.getError(5);
         } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this appointment?");
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this appointment?");
 
-            Optional<ButtonType> result = alert.showAndWait();
+            Optional<ButtonType> result = confirmAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
+                Alerts.getInfo(6);
                 AppointmentsQuery.deleteAppointment(apptToModify.getApptID());
                 apptsTableView.setItems(AppointmentsQuery.getAllAppointments());
-                // Deletion confirmation alert
             }
         }
     }

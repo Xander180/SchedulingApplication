@@ -97,18 +97,18 @@ public class CustomersViewController implements Initializable {
                         AppointmentsQuery.deleteAppointment(appointment.getApptID());
                     }
                 }
+                Alerts.getInfo(5);
                 CustomersQuery.deleteCustomer(customerID);
                 customersTableView.setItems(CustomersQuery.getAllCustomers());
-                // Deletion confirmation alert
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this customer?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
+                Alerts.getInfo(5);
                 CustomersQuery.deleteCustomer(customerToModify.getCustomerID());
                 customersTableView.setItems(CustomersQuery.getAllCustomers());
-                // Deletion confirmation alert
             }
         }
     }

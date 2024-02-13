@@ -1,5 +1,8 @@
 package helper;
 
+import com.wrc195.wrc195task.AppointmentsViewController;
+import com.wrc195.wrc195task.CustomerAddController;
+import com.wrc195.wrc195task.CustomersViewController;
 import javafx.event.Event;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -145,12 +148,29 @@ public class Alerts {
                 infoAlert.showAndWait();
                 break;
             case 2:
-                infoAlert.setTitle("Appointment Confirmed");
+                infoAlert.setTitle("Appointment Updated");
                 infoAlert.setHeaderText("Appointment has been updated.");
                 infoAlert.showAndWait();
+                break;
             case 3:
                 infoAlert.setTitle("Customer Created");
                 infoAlert.setHeaderText("Customer has been created.");
+                infoAlert.showAndWait();
+                break;
+            case 4:
+                infoAlert.setTitle("Customer Updated");
+                infoAlert.setHeaderText("Customer has been updated.");
+                infoAlert.showAndWait();
+                break;
+            case 5:
+                infoAlert.setTitle("Customer Deleted");
+                infoAlert.setHeaderText(CustomersViewController.getCustomerToModify().getCustomerName() + " has been deleted.");
+                infoAlert.showAndWait();
+                break;
+            case 6:
+                infoAlert.setTitle("Appointment Deleted");
+                infoAlert.setHeaderText("Appointment " + AppointmentsViewController.getApptToModify().getApptID() +
+                        " " + AppointmentsViewController.getApptToModify().getApptType() + " has been deleted.");
                 infoAlert.showAndWait();
         }
     }

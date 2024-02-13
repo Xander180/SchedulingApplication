@@ -3,7 +3,6 @@ package DAO;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Country;
 import model.FirstLevelDivision;
 
 import java.sql.PreparedStatement;
@@ -39,9 +38,9 @@ public class FirstLevelDivisionsQuery {
         return allDivisions;
     }
 
-    public static FirstLevelDivision returnDivison(int divisionID) {
+    public static FirstLevelDivision returnDivision(int divisionID) {
         try {
-            String sql = "SELECT * FROM first_level_divisons WHERE Division_ID = ?";
+            String sql = "SELECT * FROM first_level_divisions WHERE Division_ID = ?";
             PreparedStatement returnDivision = JDBC.getConnection().prepareStatement(sql);
             returnDivision.setInt(1, divisionID);
             returnDivision.execute();
@@ -53,7 +52,6 @@ public class FirstLevelDivisionsQuery {
                 int countryID = rs.getInt("Country_ID");
                 FirstLevelDivision firstLevelDivision = new FirstLevelDivision(returnedDivisionID, reurnedDivisionName, countryID);
                 return firstLevelDivision;
-
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
