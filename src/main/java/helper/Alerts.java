@@ -172,6 +172,11 @@ public class Alerts {
                 infoAlert.setHeaderText("Appointment " + AppointmentsViewController.getApptToModify().getApptID() +
                         " " + AppointmentsViewController.getApptToModify().getApptType() + " has been deleted.");
                 infoAlert.showAndWait();
+            case 7:
+                infoAlert.setTitle("Information");
+                infoAlert.setHeaderText("No upcoming appointments.");
+                infoAlert.showAndWait();
+                break;
         }
     }
 

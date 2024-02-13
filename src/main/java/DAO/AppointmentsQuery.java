@@ -39,8 +39,8 @@ public class AppointmentsQuery {
                 allAppointments.add(appointment);
             }
         }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
+        catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return allAppointments;
@@ -109,8 +109,8 @@ public class AppointmentsQuery {
             updateAppt.setInt(9, apptContactID);
             updateAppt.setInt(10, apptID);
             updateAppt.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -125,8 +125,35 @@ public class AppointmentsQuery {
 
             deleteAppt.setInt(1, apptID);
             deleteAppt.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    public static ObservableList<Appointment> getUserAppointments(int requestedUserID) {
+        ObservableList<Appointment> userAppointments = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT * FROM appointments WHERE User_ID = '" + requestedUserID + "'";
+            PreparedStatement getUserAppts = JDBC.getConnection().prepareStatement(sql);
+
+            ResultSet rs = getUserAppts.executeQuery();
+            while (rs.next()) {
+                int apptID = rs.getInt("Appointment_ID");
+                String apptTitle = rs.getString("Title");
+                String apptDescription = rs.getString("Description");
+                String apptLocation = rs.getString("Location");
+                String apptType = rs.getString("Type");
+                LocalDateTime apptStart = rs.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime apptEnd = rs.getTimestamp("End").toLocalDateTime();
+                int customerID = rs.getInt("Customer_ID");
+                int userID = rs.getInt("User_ID");
+                int contactID = rs.getInt("Contact_ID");
+                Appointment appointment = new Appointment(apptID, apptTitle, apptDescription, apptLocation, apptType, apptStart, apptEnd, customerID, userID, contactID);
+                userAppointments.add(appointment);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return userAppointments;
     }
 }

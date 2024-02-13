@@ -29,8 +29,8 @@ public class CountriesQuery {
                 Country country = new Country(countryID, countryName);
                 allCountries.add(country);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return allCountries;
@@ -44,17 +44,15 @@ public class CountriesQuery {
             returnCountry.execute();
             ResultSet rs = returnCountry.executeQuery();
 
-            while (rs.next()) {
-                int id = rs.getInt("Country_ID");
-                String countryName = rs.getString("Country");
-                Country country = new Country(id, countryName);
-                return country;
 
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            int id = rs.getInt("Country_ID");
+            String countryName = rs.getString("Country");
+            return new Country(id, countryName);
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public static void checkDateConversion() {
@@ -68,8 +66,8 @@ public class CountriesQuery {
                 System.out.println("CD: " + ts.toLocalDateTime().toString());
             }
         }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
+        catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

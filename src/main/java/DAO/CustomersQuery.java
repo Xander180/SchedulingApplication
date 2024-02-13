@@ -39,8 +39,8 @@ public class CustomersQuery {
                 Customer customer = new Customer(customerID, customerName, customerAddress, customerPostal, customerPhone, countryID, divisionID);
                 allCustomers.add(customer);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return allCustomers;
@@ -89,8 +89,8 @@ public class CustomersQuery {
             updateCustomer.setInt(5, divisionID);
             updateCustomer.setInt(6, customerID);
             updateCustomer.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -106,8 +106,8 @@ public class CustomersQuery {
 
             deleteCustomer.setInt(1, customerID);
             deleteCustomer.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -119,21 +119,12 @@ public class CustomersQuery {
             returnCustomer.execute();
             ResultSet rs = returnCustomer.executeQuery();
 
-            while (rs.next()) {
-                int returnedCustomerId = rs.getInt("Customer_ID");
-                String customerName = rs.getString("Customer_Name");
-                String customerAddress = rs.getString("Address");
-                String customerPostal = rs.getString("Postal_Code");
-                String customerPhone = rs.getString("Phone");
-                int divisionID = rs.getInt("Division_ID");
+            int returnedCustomerId = rs.getInt("Customer_ID");
+            String customerName = rs.getString("Customer_Name");
+            return new Customer(returnedCustomerId, customerName);
 
-                Customer customer = new Customer(returnedCustomerId, customerName);
-                return customer;
-
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

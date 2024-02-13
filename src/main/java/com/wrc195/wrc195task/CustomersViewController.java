@@ -47,14 +47,13 @@ public class CustomersViewController implements Initializable {
     private TableColumn<Customer, String> customerPostalCol;
 
     Stage stage;
-    Parent scene;
 
     /**
      *
      * Displays a blank form to create a new customer.
      *
      * @param event App new appointment button.
-     * @throws IOException
+     * @throws IOException From FXMLLoader
      */
     @FXML
     void onActionAddCustomer(ActionEvent event) throws IOException {
@@ -116,7 +115,7 @@ public class CustomersViewController implements Initializable {
     /**
      *
      * @param event Back button to return to main menu
-     * @throws IOException
+     * @throws IOException From FXMLLoader
      */
     @FXML
     void onActionExit(ActionEvent event) throws IOException {
@@ -126,7 +125,6 @@ public class CustomersViewController implements Initializable {
 
     /**
      * Load the CustomerModifyController.
-     *
      * Display an error if no appointment is selected.
      *
      * @param event Appointment modify button action.
@@ -142,7 +140,7 @@ public class CustomersViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("CustomerModifyView.fxml"));
 
-            AppointmentModifyController AMController = loader.getController();
+            loader.getController();
 
             stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
             loader.load();

@@ -31,8 +31,8 @@ public class FirstLevelDivisionsQuery {
                 FirstLevelDivision firstLevelDivision = new FirstLevelDivision(divisionID, divisionName, countryID);
                 allDivisions.add(firstLevelDivision);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return allDivisions;
@@ -46,17 +46,14 @@ public class FirstLevelDivisionsQuery {
             returnDivision.execute();
             ResultSet rs = returnDivision.executeQuery();
 
-            while (rs.next()) {
-                int returnedDivisionID = rs.getInt("Division_ID");
-                String reurnedDivisionName = rs.getString("Division");
-                int countryID = rs.getInt("Country_ID");
-                FirstLevelDivision firstLevelDivision = new FirstLevelDivision(returnedDivisionID, reurnedDivisionName, countryID);
-                return firstLevelDivision;
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            int returnedDivisionID = rs.getInt("Division_ID");
+            String reurnedDivisionName = rs.getString("Division");
+            int countryID = rs.getInt("Country_ID");
+            return new FirstLevelDivision(returnedDivisionID, reurnedDivisionName, countryID);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
 }

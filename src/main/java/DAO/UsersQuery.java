@@ -31,8 +31,8 @@ public class UsersQuery {
                 User user = new User(userID, userName, password);
                 allUsers.add(user);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return allUsers;
@@ -52,11 +52,9 @@ public class UsersQuery {
             String userName = rs.getString("User_Name");
             String password = rs.getString("Password");
 
-            User user = new User(searchedUserId, userName, password);
-            return user;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            return new User(searchedUserId, userName, password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

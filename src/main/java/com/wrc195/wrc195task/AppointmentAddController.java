@@ -30,8 +30,6 @@ public class AppointmentAddController implements Initializable {
     private final ObservableList<Customer> allCustomers = CustomersQuery.getAllCustomers();
     private final ObservableList<User> allUsers = UsersQuery.getAllUsers();
 
-    //private int generatedID = 1;
-
     @FXML
     private TextArea apptDescriptionTxt;
 

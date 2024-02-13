@@ -7,12 +7,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import model.User;
 
 import java.io.FileWriter;
@@ -22,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -29,6 +28,7 @@ public class LoginController implements Initializable {
 
     private boolean isFrench;
 
+    private static int currentUser;
 
     @FXML
     private Label currentLocaleLbl;
@@ -57,9 +57,6 @@ public class LoginController implements Initializable {
     @FXML
     private Label welcomeLbl;
 
-    Stage stage;
-    Parent scene;
-
     @FXML
     void onActionExit(ActionEvent event) { System.exit(0); }
 
@@ -87,7 +84,10 @@ public class LoginController implements Initializable {
         if (!validateEmptyFields()) return false;
 
         for (User user : allUsers) {
-            if (usernameTxt.getText().equals(user.getUserName()) || passwordField.getText().equals(user.getUserPassword()))  return true;
+            if (usernameTxt.getText().equals(user.getUserName()) && passwordField.getText().equals(user.getUserPassword()))  {
+                currentUser = user.getUserID();
+                return true;
+            }
         }
         if (isFrench) {
             Alerts.getError(2);
@@ -110,11 +110,13 @@ public class LoginController implements Initializable {
         return true;
     }
 
+    public static int getCurrentUser() { return currentUser; }
+
     /**
      * Interface used to acquire login activity file name for lambda on line 123.
      */
     interface LoginActivity {
-        public String getFileName();
+        String getFileName();
     }
 
     /**
@@ -124,13 +126,11 @@ public class LoginController implements Initializable {
 
     /**
      * Write to login_activity file each login attempt.
-     *
-     * @throws IOException
      */
     public void setLoginActivity() throws IOException {
         FileWriter fileWriter = new FileWriter(loginActivity.getFileName(), true);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm:ss");
-        ZoneId localZone = ZoneId.systemDefault();
+        ZoneId.systemDefault();
         if (checkLogin()) {
             fileWriter.write("Successful login on " + dateTimeFormatter.format(LocalDateTime.now()) + ": " + usernameTxt.getText());
         } else {
@@ -141,7 +141,7 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * Initialize controller and change lanuage to French if system language is French.
+     * Initialize controller and change language to French if system language is French.
      * Only changes log in screen language.
      *
      * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
@@ -151,11 +151,9 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Locale currentLocale = Locale.getDefault();
 
-        /**
-         * Check if system language is set to French
-         * If so, change text language for log in screen and log in errors only.
-         */
-        if (currentLocale.getDisplayLanguage() == "français") {
+        //Check if system language is set to French
+        // If so, change text language for log in screen and log in errors only.
+        if (Objects.equals(currentLocale.getDisplayLanguage(), "français")) {
             isFrench = true;
             localeTxtLbl.setText("Localité actuelle: ");
             passwordLbl.setText("Mot de passe");
@@ -165,13 +163,11 @@ public class LoginController implements Initializable {
             exitBtn.setText("Sortie");
         }
 
-        /**
-         * Checks user locale and displays it accordingly.
-         * Default is U.S.
-         */
-        if (currentLocale.getDisplayCountry() == "Canada") {
+        // Checks user locale and displays it accordingly.
+        // Default is U.S.
+        if (Objects.equals(currentLocale.getDisplayCountry(), "Canada")) {
             currentLocaleLbl.setText("Canada");
-        } else if (currentLocale.getDisplayCountry() == "Royaume-Uni") {
+        } else if (Objects.equals(currentLocale.getDisplayCountry(), "Royaume-Uni")) {
             currentLocaleLbl.setText("U.K.");
         }
     }

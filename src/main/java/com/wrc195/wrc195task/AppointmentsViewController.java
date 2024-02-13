@@ -73,13 +73,12 @@ public class AppointmentsViewController implements Initializable {
     private ToggleGroup sortAppts;
 
     Stage stage;
-    Parent scene;
 
     /**
      * Displays a blank form to create a new appointment.
      *
      * @param event App new appointment button.
-     * @throws IOException
+     * @throws IOException From FXMLLoader
      */
     @FXML
     void onActionAddAppt(ActionEvent event) throws IOException {
@@ -113,7 +112,7 @@ public class AppointmentsViewController implements Initializable {
     /**
      *
      * @param event Back button to return to main menu
-     * @throws IOException
+     * @throws IOException From FXMLLoader
      */
     @FXML
     void onActionExit(ActionEvent event) throws IOException {
@@ -122,7 +121,6 @@ public class AppointmentsViewController implements Initializable {
 
     /**
      * Load the AppointmentModifyController.
-     *
      * Display an error if no appointment is selected.
      *
      * @param event Appointment modify button action.
@@ -138,7 +136,7 @@ public class AppointmentsViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("AppointmentModifyView.fxml"));
 
-            AppointmentModifyController AMController = loader.getController();
+            loader.getController();
 
             stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
             loader.load();
@@ -158,11 +156,11 @@ public class AppointmentsViewController implements Initializable {
         try {
             ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
 
-            for (Appointment appointments : allAppointments) {
+            for (Appointment ignored : allAppointments) {
                 apptsTableView.setItems(allAppointments);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -187,7 +185,7 @@ public class AppointmentsViewController implements Initializable {
                 apptsTableView.setItems(appointmentsByMonth);
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -212,7 +210,7 @@ public class AppointmentsViewController implements Initializable {
                 apptsTableView.setItems(appointmentsByWeek);
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

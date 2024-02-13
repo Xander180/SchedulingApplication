@@ -24,7 +24,6 @@ public class CustomerModifyController implements Initializable {
     private final ObservableList<Country> allCountries = CountriesQuery.getAllCountries();
 
     private final ObservableList<FirstLevelDivision> allDivisions = FirstLevelDivisionsQuery.getAllDivisions();
-    private Customer selectedCustomer;
 
     @FXML
     private TextField customerAddressTxt;
@@ -91,12 +90,14 @@ public class CustomerModifyController implements Initializable {
     }
 
     /**
-     * @param url
-     * @param resourceBundle
+     * Initialize controller and popualate selected customer information.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        selectedCustomer = CustomersViewController.getCustomerToModify();
+        Customer selectedCustomer = CustomersViewController.getCustomerToModify();
         customerCountryCBox.getItems().addAll(allCountries);
         customerDivisionCBox.getItems().addAll(allDivisions);
 

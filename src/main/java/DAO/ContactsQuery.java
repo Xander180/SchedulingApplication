@@ -31,8 +31,8 @@ public class ContactsQuery {
                 Contact contact = new Contact(contactID, contactName, contactEmail);
                 allContacts.add(contact);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return allContacts;
@@ -52,12 +52,10 @@ public class ContactsQuery {
             int searchedContactId = rs.getInt("Contact_ID");
             String contactName = rs.getString("Contact_Name");
             String contactEmail = rs.getString("Email");
-            Contact contact = new Contact(searchedContactId, contactName, contactEmail);
-            return contact;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            return new Contact(searchedContactId, contactName, contactEmail);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public static int returnContactId(String contactName) throws SQLException {

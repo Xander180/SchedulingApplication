@@ -18,7 +18,6 @@ import model.User;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -74,7 +73,7 @@ public class AppointmentModifyController implements Initializable {
     }
 
     @FXML
-    void onActionSaveAppt(ActionEvent event) throws SQLException, IOException {
+    void onActionSaveAppt(ActionEvent event) throws IOException {
         int apptID = selectedAppt.getApptID();
         String title = apptTitleTxt.getText();
         String description = apptDescriptionTxt.getText();
@@ -142,8 +141,10 @@ public class AppointmentModifyController implements Initializable {
     }
 
     /**
-     * @param url
-     * @param resourceBundle
+     * Initialize controller and display selected appointment information
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
