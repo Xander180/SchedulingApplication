@@ -15,8 +15,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -68,6 +72,7 @@ public class LoginController implements Initializable {
      */
     @FXML
     void onActionLogIn(ActionEvent event) throws IOException {
+        setLoginActivity();
         if (checkLogin()) {
             Misc.jumpToPage(event, "MainMenu.fxml");
         }
@@ -103,6 +108,36 @@ public class LoginController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Interface used to acquire login activity file name for lambda on line 123.
+     */
+    interface LoginActivity {
+        public String getFileName();
+    }
+
+    /**
+     * LAMBDA EXPRESSION #1: Get file name for login activity.
+     */
+    LoginActivity loginActivity = () -> "login_activity.txt";
+
+    /**
+     * Write to login_activity file each login attempt.
+     *
+     * @throws IOException
+     */
+    public void setLoginActivity() throws IOException {
+        FileWriter fileWriter = new FileWriter(loginActivity.getFileName(), true);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm:ss");
+        ZoneId localZone = ZoneId.systemDefault();
+        if (checkLogin()) {
+            fileWriter.write("Successful login on " + dateTimeFormatter.format(LocalDateTime.now()) + ": " + usernameTxt.getText());
+        } else {
+            fileWriter.write("Failed login attempt on " + dateTimeFormatter.format(LocalDateTime.now()) + ": " + usernameTxt.getText());
+        }
+        fileWriter.write("\n");
+        fileWriter.close();
     }
 
     /**
