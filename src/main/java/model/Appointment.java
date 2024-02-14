@@ -3,8 +3,6 @@ package model;
 import DAO.AppointmentsQuery;
 import helper.Alerts;
 import javafx.collections.ObservableList;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,7 +20,6 @@ public class Appointment {
     private String apptDescription;
     private String apptLocation;
     private final String apptType;
-
     private int apptTypeTotal;
     private LocalDateTime apptStart;
     private LocalDateTime apptEnd;
@@ -56,6 +53,11 @@ public class Appointment {
         this.contactID = contactID;
     }
 
+    /**
+     *
+     * @param apptType Appointment type
+     * @param apptTypeTotal Total appointments by type
+     */
     public Appointment(String apptType, int apptTypeTotal) {
         this.apptType = apptType;
         this.apptTypeTotal = apptTypeTotal;
@@ -103,10 +105,19 @@ public class Appointment {
         return apptType;
     }
 
+    /**
+     *
+     * @return total appointments by type.
+     */
     public int getApptTypeTotal() {
         return apptTypeTotal;
     }
 
+    /**
+     * Set appointment totals by type.
+     *
+     * @param apptTypeTotal Number of appointments by type.
+     */
     public void setApptTypeTotal(int apptTypeTotal) {
         this.apptTypeTotal = apptTypeTotal;
     }
@@ -151,6 +162,10 @@ public class Appointment {
         return contactID;
     }
 
+    /**
+     * Get local start time for business.
+     * @return business local start time.
+     */
     public static LocalTime localStart() {
         LocalTime openingBusinessTime = LocalTime.of(8,0);
         ZoneId easternTime = ZoneId.of("America/New_York");
@@ -159,12 +174,14 @@ public class Appointment {
         LocalDateTime businessEasternTime = LocalDateTime.of(LocalDate.now(), openingBusinessTime);
         LocalDateTime businessLocalTime = businessEasternTime.atZone(easternTime).withZoneSameInstant(localTime).toLocalDateTime();
 
-        LocalTime businessStartLocalTime = businessLocalTime.toLocalTime();
-
-        return businessStartLocalTime;
+        return businessLocalTime.toLocalTime();
 
     }
 
+    /**
+     * Get local end time for business.
+     * @return business local end time.
+     */
     public static LocalTime localEnd() {
         LocalTime closingBusinessTime = LocalTime.of(22,0);
         ZoneId easternTime = ZoneId.of("America/New_York");
@@ -173,12 +190,17 @@ public class Appointment {
         LocalDateTime businessEasternTime = LocalDateTime.of(LocalDate.now(), closingBusinessTime);
         LocalDateTime businessLocalTime = businessEasternTime.atZone(easternTime).withZoneSameInstant(localTime).toLocalDateTime();
 
-        LocalTime businessEndLocalTime = businessLocalTime.toLocalTime();
-
-        return businessEndLocalTime;
+        return businessLocalTime.toLocalTime();
 
     }
 
+    /**
+     * Check to see if appointment time is within business hours.
+     *
+     * @param appointmentStart Appointment start time.
+     * @param appointmentEnd Appointment end time.
+     * @return true or false if appointment time is within business hours or not.
+     */
     public static boolean businessHours(LocalDateTime appointmentStart, LocalDateTime appointmentEnd) {
         ZoneId localZone = ZoneId.systemDefault();
         ZoneId estZone = ZoneId.of("America/New_York");
@@ -192,6 +214,14 @@ public class Appointment {
         return appStartEST.isBefore(businessStartEST) || appEndEST.isAfter(businessEndEST);
     }
 
+    /**
+     * Check if appointment time overlaps with other appointments for this customer.
+     *
+     * @param customerID Selected customer
+     * @param apptStart Appointment start time for customer.
+     * @param apptEnd Appointment end time for customer.
+     * @return true or false if appointment overlaps or not.
+     */
     public static boolean checkApptOverlap(int customerID, LocalDateTime apptStart, LocalDateTime apptEnd) {
         ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
         LocalDateTime apptStartCheck;

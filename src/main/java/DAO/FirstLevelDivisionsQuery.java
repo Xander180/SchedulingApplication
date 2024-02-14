@@ -9,6 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class for querying first level divisions database.
+ *
+ * @author Wilson Ramirez
+ */
 public class FirstLevelDivisionsQuery {
     /**
      * SQL query for getting all first level divisions from the database.
@@ -38,6 +43,12 @@ public class FirstLevelDivisionsQuery {
         return allDivisions;
     }
 
+    /**
+     * SQL query for returning a specific first level division.
+     *
+     * @param divisionID Selected division's ID
+     * @return Selected division
+     */
     public static FirstLevelDivision returnDivision(int divisionID) {
         try {
             String sql = "SELECT * FROM first_level_divisions WHERE Division_ID = ?";

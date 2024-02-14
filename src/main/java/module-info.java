@@ -3,6 +3,7 @@ module com.wrc195.wrc195task {
     requires javafx.fxml;
     requires java.sql;
     requires javafx.base;
+    requires mysql.connector.java;
 
 
     opens com.wrc195.wrc195task to javafx.fxml, javafx.base;

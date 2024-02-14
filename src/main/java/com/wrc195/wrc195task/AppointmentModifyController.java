@@ -24,6 +24,11 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for updating appointments.
+ *
+ * @author Wilson Ramirez
+ */
 public class AppointmentModifyController implements Initializable {
     private Appointment selectedAppt;
 
@@ -67,11 +72,27 @@ public class AppointmentModifyController implements Initializable {
     @FXML
     private ChoiceBox<User> userIDCBox;
 
+    /**
+     * Cancel current form
+     * Display a confirmation dialog box
+     *
+     * @param event Cancel form button
+     * @throws IOException From FXMLoader
+     */
     @FXML
     void onActionCancel(ActionEvent event) throws IOException {
         Alerts.getConfirmation(event,2);
     }
 
+
+    /**
+     * Update an existing appointment entry in the database.
+     * Check for blank/empty text boxes, as well as unselected choice boxes.
+     * Check if appointment date/time is within business hours.
+     *
+     * @param event Save appointment button
+     * @throws IOException For FXMLLoader.
+     */
     @FXML
     void onActionSaveAppt(ActionEvent event) throws IOException {
         int apptID = selectedAppt.getApptID();
@@ -94,7 +115,7 @@ public class AppointmentModifyController implements Initializable {
             Alerts.getError(14);
             return;
         }
-        int contactID = contactCBox.getValue().getContactID();
+        int contactID = contactCBox.getValue().contactID();
 
         // Handle null pointer exception
         User user = userIDCBox.getValue();
@@ -102,7 +123,7 @@ public class AppointmentModifyController implements Initializable {
             Alerts.getError(15);
             return;
         }
-        int userID = userIDCBox.getValue().getUserID();
+        int userID = userIDCBox.getValue().userID();
 
         // Handle null pointer exception
         LocalDate startDate = apptStartDatePicker.getValue();
@@ -141,7 +162,7 @@ public class AppointmentModifyController implements Initializable {
     }
 
     /**
-     * Initialize controller and display selected appointment information
+     * Initialize controller and populate existing appointment information
      *
      * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.

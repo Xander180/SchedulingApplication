@@ -24,6 +24,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for adding appointments.
+ *
+ * @author Wilson Ramirez
+ */
 public class AppointmentAddController implements Initializable {
 
     private final ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
@@ -108,7 +113,7 @@ public class AppointmentAddController implements Initializable {
             Alerts.getError(14);
             return;
         }
-        int contactID = contactCBox.getValue().getContactID();
+        int contactID = contactCBox.getValue().contactID();
 
         // Handle null pointer exception
         User user = userIDCBox.getValue();
@@ -116,7 +121,7 @@ public class AppointmentAddController implements Initializable {
             Alerts.getError(15);
             return;
         }
-        int userID = userIDCBox.getValue().getUserID();
+        int userID = userIDCBox.getValue().userID();
 
         // Handle null pointer exception
         LocalDate startDate = apptStartDatePicker.getValue();

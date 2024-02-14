@@ -9,6 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class for querying users database.
+ *
+ * @author Wilson Ramirez
+ */
 public class UsersQuery {
     /**
      *
@@ -37,6 +42,12 @@ public class UsersQuery {
 
         return allUsers;
     }
+
+    /**
+     *
+     * @param userId Selected user's ID
+     * @return Selected user information
+     */
 
     public static User returnUserID(int userId) {
         try {

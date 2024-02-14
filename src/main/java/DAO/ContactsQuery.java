@@ -9,6 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class for querying contacts database.
+ *
+ * @author Wilson Ramirez
+ */
 public class ContactsQuery {
     /**
      * SQL query for getting all contacts from the database.
@@ -38,6 +43,12 @@ public class ContactsQuery {
         return allContacts;
     }
 
+    /**
+     * SQL query to return contact info for a specific contact.
+     *
+     * @param contactID Selected contact's ID
+     * @return Selected contact
+     */
     public static Contact returnContact(int contactID) {
         try {
             String sql = "SELECT * FROM contacts WHERE Contact_ID = ?";
@@ -56,18 +67,5 @@ public class ContactsQuery {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static int returnContactId(String contactName) throws SQLException {
-        int contactID = 0;
-        String sql = "SELECT * FROM contacts WHERE Contact_Name = ?";
-        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
-        ps.setString(1, contactName);
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            contactID = rs.getInt("Contact_ID");
-        }
-        return contactID;
     }
 }

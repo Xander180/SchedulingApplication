@@ -9,6 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class for querying customers database.
+ *
+ * @author Wilson Ramirez
+ */
 public class CustomersQuery {
     /**
      * SQL query for getting all customers from the database.
@@ -71,6 +76,7 @@ public class CustomersQuery {
     /**
      * SQL query for updated existing customers in the database.
      *
+     * @param customerID Customer ID
      * @param name Customer name
      * @param address Customer address
      * @param postal Customer postal code
@@ -111,6 +117,12 @@ public class CustomersQuery {
         }
     }
 
+    /**
+     * SQL query for returning a specific customer.
+     *
+     * @param customerId Selected customer's ID
+     * @return Selected customer.
+     */
     public static Customer returnCustomer(int customerId) {
         try {
             String sql = "SELECT * FROM customers WHERE Customer_ID = ?";

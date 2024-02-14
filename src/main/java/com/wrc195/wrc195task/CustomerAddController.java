@@ -20,6 +20,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for adding customers.
+ *
+ * @author Wilson Ramirez
+ */
 public class CustomerAddController implements Initializable {
 
     private final ObservableList<Country> allCountries = CountriesQuery.getAllCountries();
@@ -86,7 +91,7 @@ public class CustomerAddController implements Initializable {
             Alerts.getError(22);
             return;
         }
-        int customerDivision = FLD.getDivisionID();
+        int customerDivision = FLD.divisionID();
 
         // Handle blank/empty text boxes
         if (name.isEmpty() || name.isBlank()) {
@@ -115,7 +120,7 @@ public class CustomerAddController implements Initializable {
         ObservableList<FirstLevelDivision> loadedDivisions = FXCollections.observableArrayList();
 
         for (FirstLevelDivision division : allDivisions) {
-            if (division.getCountryID() == selectedCountry.getCountryID()) {
+            if (division.countryID() == selectedCountry.getCountryID()) {
                 loadedDivisions.add(division);
             }
         }

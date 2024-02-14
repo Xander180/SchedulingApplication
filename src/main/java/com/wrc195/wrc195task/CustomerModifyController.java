@@ -19,6 +19,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for updating customers.
+ *
+ * @author Wilson Ramirez
+ */
 public class CustomerModifyController implements Initializable {
 
     private final ObservableList<Country> allCountries = CountriesQuery.getAllCountries();
@@ -46,11 +51,25 @@ public class CustomerModifyController implements Initializable {
     @FXML
     private TextField customerPostalTxt;
 
+    /**
+     * Cancel current form
+     * Display a confirmation dialog box
+     *
+     * @param event Cancel form button
+     * @throws IOException From FXMLoader
+     */
     @FXML
     void onActionCancel(ActionEvent event) throws IOException {
         Alerts.getConfirmation(event, 3);
     }
 
+    /**
+     * Update existing customer entry in the database.
+     * Check for blank/empty text boxes, as well as unselected choice boxes.
+     *
+     * @param event Save customer button..
+     * @throws IOException For FXMLLoader.
+     */
     @FXML
     void onActionSaveCustomer(ActionEvent event) throws IOException {
         int id = Integer.parseInt(customerIDTxt.getText());
@@ -71,7 +90,7 @@ public class CustomerModifyController implements Initializable {
             Alerts.getError(22);
             return;
         }
-        int customerDivision = FLD.getDivisionID();
+        int customerDivision = FLD.divisionID();
 
         // Handle blank/empty text boxes
         if (name.isEmpty() || name.isBlank()) {
@@ -104,7 +123,7 @@ public class CustomerModifyController implements Initializable {
         customerIDTxt.setText(String.valueOf(selectedCustomer.getCustomerID()));
         customerNameTxt.setText(String.valueOf(selectedCustomer.getCustomerName()));
         customerAddressTxt.setText(String.valueOf(selectedCustomer.getCustomerAddress()));
-        customerPostalTxt.setText(String.valueOf(selectedCustomer.getCustomerZip()));
+        customerPostalTxt.setText(String.valueOf(selectedCustomer.getCustomerPostal()));
         customerPhoneTxt.setText(String.valueOf(selectedCustomer.getCustomerPhone()));
         customerCountryCBox.setValue(CountriesQuery.returnCountry(selectedCustomer.getCountryID()));
         customerDivisionCBox.setValue(FirstLevelDivisionsQuery.returnDivision(selectedCustomer.getDivisionID()));

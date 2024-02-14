@@ -3,17 +3,24 @@ package DAO;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Appointment;
 import model.Country;
-import model.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
+/**
+ * Class for querying countries database.
+ *
+ * @author Wilson Ramirez
+ */
 public class CountriesQuery {
 
+    /**
+     * SQL query for getting all countries from the database.
+     *
+     * @return all countries.
+     */
     public static ObservableList<Country> getAllCountries() {
         ObservableList<Country> allCountries = FXCollections.observableArrayList();
 
@@ -37,6 +44,12 @@ public class CountriesQuery {
         return allCountries;
     }
 
+    /**
+     * SQL query for returning a specific country.
+     *
+     * @param countryID Selected country's ID
+     * @return Selected country
+     */
     public static Country returnCountry(int countryID) {
         try {
             String sql = "SELECT * FROM countries WHERE Country_ID = ?";
@@ -56,6 +69,11 @@ public class CountriesQuery {
         }
     }
 
+    /**
+     * SQL query to return a list of countries and a count of how many customers are in that country.
+     *
+     * @return A count of how many customers in each country
+     */
     public static ObservableList<Country> getCustomersByCountry() {
         ObservableList<Country> countryList = FXCollections.observableArrayList();
         try {
@@ -75,21 +93,5 @@ public class CountriesQuery {
             throw new RuntimeException();
         }
         return countryList;
-    }
-
-    public static void checkDateConversion() {
-        System.out.println("CREATE DATA TEST");
-        String sql = "SELECT Create_Date FROM countries";
-        try {
-            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Timestamp ts = rs.getTimestamp("Create_Date");
-                System.out.println("CD: " + ts.toLocalDateTime().toString());
-            }
-        }
-        catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

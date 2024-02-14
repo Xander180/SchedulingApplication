@@ -22,6 +22,7 @@ public class Customer {
      * @param customerAddress Customer address.
      * @param customerZip Customer ZIP/Postal code.
      * @param customerPhone Customer phone number.
+     * @param countryID Associated country ID
      * @param divisionID Associated division ID.
      */
     public Customer(int customerID, String customerName, String customerAddress, String customerZip, String customerPhone, int countryID, int divisionID) {
@@ -34,6 +35,11 @@ public class Customer {
         this.divisionID = divisionID;
     }
 
+    /**
+     *
+     * @param returnedCustomerId Customer ID for returned customer
+     * @param customerName Customer name for returned customer
+     */
     public Customer(int returnedCustomerId, String customerName) {
         this.customerID = returnedCustomerId;
         this.customerName = customerName;
@@ -49,7 +55,7 @@ public class Customer {
 
     /**
      * Sets the customer ID
-     * @param customerID
+     * @param customerID Customer ID.
      */
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
@@ -65,7 +71,7 @@ public class Customer {
 
     /**
      * Sets the customer name.
-     * @param customerName
+     * @param customerName Customer's name
      */
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
@@ -81,7 +87,7 @@ public class Customer {
 
     /**
      * Sets the customer address.
-     * @param customerAddress
+     * @param customerAddress Customer's address
      */
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
@@ -91,15 +97,15 @@ public class Customer {
      *
      * @return customer ZIP/Postal code.
      */
-    public String getCustomerZip() {
+    public String getCustomerPostal() {
         return customerZip;
     }
 
     /**
      * Sets the customer ZIP/Postal code.
-     * @param customerZip
+     * @param customerZip Customer's postal code
      */
-    public void setCustomerZip(String customerZip) {
+    public void setCustomerPostal(String customerZip) {
         this.customerZip = customerZip;
     }
 
@@ -113,16 +119,24 @@ public class Customer {
 
     /**
      * Sets the customer phone number.
-     * @param customerPhone
+     * @param customerPhone Customer phone number
      */
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
     }
 
+    /**
+     *
+     * @return Customer's associated country ID
+     */
     public int getCountryID() {
         return countryID;
     }
 
+    /**
+     * Set country ID
+     * @param countryID Country ID
+     */
     public void setCountryID(int countryID) {
         this.countryID = countryID;
     }
@@ -137,7 +151,7 @@ public class Customer {
 
     /**
      * Sets the associated division ID.
-     * @param divisionID
+     * @param divisionID Division ID
      */
     public void setDivisionID(int divisionID) {
         this.divisionID = divisionID;

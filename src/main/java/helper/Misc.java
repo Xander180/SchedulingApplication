@@ -2,12 +2,9 @@ package helper;
 
 import com.wrc195.wrc195task.Main;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
 
@@ -15,10 +12,16 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Class for miscellaneous variables and methods that do not fit within other classes.
+ *
+ * @author Wilson Ramirez
+ */
 public class Misc {
 
     /**
      * Used to display hours in Spinner type variables.
+     * For start time.
      */
     public static SpinnerValueFactory<LocalTime> factoryStart = new SpinnerValueFactory<>() {
 
@@ -41,10 +44,12 @@ public class Misc {
             LocalTime value = getValue();
             setValue(value == null ? defaultValue() : value.plusHours(steps));
         }
-
-
     };
 
+    /**
+     * Used to display hours in Spinner type variables.
+     * For end time.
+     */
     public static SpinnerValueFactory<LocalTime> factoryEnd = new SpinnerValueFactory<>() {
 
         {
@@ -66,8 +71,6 @@ public class Misc {
             LocalTime value = getValue();
             setValue(value == null ? defaultValue() : value.plusHours(steps));
         }
-
-
     };
 
     /**

@@ -23,6 +23,11 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for viewing all appointments.
+ *
+ * @author Wilson Ramirez
+ */
 public class AppointmentsViewController implements Initializable {
 
     private static Appointment apptToModify;
@@ -153,6 +158,7 @@ public class AppointmentsViewController implements Initializable {
      */
     @FXML
     void selectAllApptsRBtn(ActionEvent event) {
+        allApptsRBtn.setSelected(true);
         try {
             ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
 
@@ -171,6 +177,7 @@ public class AppointmentsViewController implements Initializable {
      */
     @FXML
     void selectMonthlyApptsRBtn(ActionEvent event) {
+        monthlyApptsRBtn.setSelected(true);
         try {
             ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
             ObservableList<Appointment> appointmentsByMonth = FXCollections.observableArrayList();
@@ -196,6 +203,7 @@ public class AppointmentsViewController implements Initializable {
      */
     @FXML
     void selectWeeklyApptsRBtn(ActionEvent event) {
+        weeklyApptsRBtn.setSelected(true);
         try {
             ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
             ObservableList<Appointment> appointmentsByWeek = FXCollections.observableArrayList();
@@ -214,6 +222,10 @@ public class AppointmentsViewController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @return Selected appointment for access within other classes.
+     */
     public static Appointment getApptToModify() { return apptToModify;}
 
 

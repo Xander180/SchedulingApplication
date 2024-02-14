@@ -5,47 +5,43 @@ package model;
  *
  * @author Wilson Ramirez
  */
-public class User {
-    private final int userID;
-    private final String userName;
-    private final String userPassword;
-
+public record User(int userID, String userName, String userPassword) {
     /**
      * Constructor for User accounts in the database.
-     * @param userID User ID number.
-     * @param userName Username.
+     *
+     * @param userID       User ID number.
+     * @param userName     Username.
      * @param userPassword Password.
      */
-    public User(int userID, String userName, String userPassword) {
-        this.userID = userID;
-        this.userName = userName;
-        this.userPassword = userPassword;
+    public User {
     }
 
     /**
-     *
      * @return user ID number.
      */
-    public int getUserID() {
+    @Override
+    public int userID() {
         return userID;
     }
 
     /**
-     *
      * @return username.
      */
-    public String getUserName() {
+    @Override
+    public String userName() {
         return userName;
     }
 
     /**
-     *
      * @return user password.
      */
-    public String getUserPassword() {
+    @Override
+    public String userPassword() {
         return userPassword;
     }
 
     @Override
-    public String toString() { return String.valueOf(userID); }
+    public String toString() {
+        return String.valueOf(userID);
+    }
 }

@@ -1,10 +1,8 @@
 package helper;
 
 import com.wrc195.wrc195task.AppointmentsViewController;
-import com.wrc195.wrc195task.CustomerAddController;
 import com.wrc195.wrc195task.CustomersViewController;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import model.Appointment;
@@ -13,8 +11,17 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+/**
+ * Class for all alerts
+ *
+ * @author Wilson Ramirez
+ */
 public class Alerts {
 
+    /**
+     * All error alerts.
+     * @param errorType Type of error to display
+     */
     public static void getError(int errorType) {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
@@ -131,13 +138,14 @@ public class Alerts {
                 errorAlert.setHeaderText("Appointment must have an associated first level division.");
                 errorAlert.showAndWait();
                 break;
-            case 23:
-
-            case 24:
-
         }
     }
 
+    /**
+     * All informational alerts.
+     *
+     * @param infoType Type of info alert to display
+     */
     public static void getInfo(int infoType) {
 
         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -181,6 +189,13 @@ public class Alerts {
         }
     }
 
+    /**
+     * All confirmation alerts.
+     *
+     * @param event Event that is triggered.
+     * @param confirmType Type of confirmation to display.
+     * @throws IOException From FXMLLoader
+     */
     public static void getConfirmation(ActionEvent event, int confirmType) throws IOException {
         Alert confirmAlert;
         Optional<ButtonType> result;
@@ -207,11 +222,14 @@ public class Alerts {
                     Misc.jumpToPage(event, "CustomersView.fxml");
                 }
                 break;
-            case 4:
-
         }
     }
 
+    /**
+     * All warning alerts.
+     *
+     * @param warningType Type of warning to display.
+     */
     public static void getWarning(int warningType) {
         Alert warningAlert = new Alert(Alert.AlertType.WARNING);
 
@@ -232,8 +250,4 @@ public class Alerts {
                 warningAlert.showAndWait();
         }
     }
-
-
-
-
 }

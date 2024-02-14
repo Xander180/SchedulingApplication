@@ -23,6 +23,11 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for logging in.
+ *
+ * @author Wilson Ramirez
+ */
 public class LoginController implements Initializable {
     private final ObservableList<User> allUsers = UsersQuery.getAllUsers();
 
@@ -57,11 +62,17 @@ public class LoginController implements Initializable {
     @FXML
     private Label welcomeLbl;
 
+    /**
+     * Exits the program.
+     *
+     * @param event Exit button
+     */
     @FXML
     void onActionExit(ActionEvent event) { System.exit(0); }
 
     /**
      * Logs into scheduling software if username and password match user info in database.
+     * Login attempts are recorded in login_activity.txt.
      * Displays error if account information is incorrect in English or French.
      *
      * @param event Log In button.
@@ -84,8 +95,8 @@ public class LoginController implements Initializable {
         if (!validateEmptyFields()) return false;
 
         for (User user : allUsers) {
-            if (usernameTxt.getText().equals(user.getUserName()) && passwordField.getText().equals(user.getUserPassword()))  {
-                currentUser = user.getUserID();
+            if (usernameTxt.getText().equals(user.userName()) && passwordField.getText().equals(user.userPassword()))  {
+                currentUser = user.userID();
                 return true;
             }
         }
@@ -110,6 +121,10 @@ public class LoginController implements Initializable {
         return true;
     }
 
+    /**
+     *
+     * @return Currently logged in user for access within other classes.
+     */
     public static int getCurrentUser() { return currentUser; }
 
     /**
@@ -126,6 +141,7 @@ public class LoginController implements Initializable {
 
     /**
      * Write to login_activity file each login attempt.
+     * @throws IOException From FXMLLoader
      */
     public void setLoginActivity() throws IOException {
         FileWriter fileWriter = new FileWriter(loginActivity.getFileName(), true);

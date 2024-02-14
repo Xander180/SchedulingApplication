@@ -10,9 +10,29 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Scheduling program implement an application for managing
+ * customer records and associated appointments scheduled.
+ *
+ *
+ *
+ * Javadoc is located in /src/main/javadoc
+ * .fxml form files are located in src/main/resources/com/wrc195/wrc195task
+ *
+ * Lambda expression #1 is located in LoginController at line 135
+ *
+ * @author Wilson Ramirez
+ */
 public class Main extends Application {
     public static Stage stage;
     public static Parent scene;
+
+    /**
+     * Start method to create the FXML stage and load the initial scene.
+     *
+     * @param stage Stage
+     * @throws IOException From FXMLLoader
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
@@ -22,6 +42,11 @@ public class Main extends Application {
         stage.show();
     }
 
+    /**
+     * Entry point of the application.
+     *
+     * @param args Launch arguments
+     */
     public static void main(String[] args) {
         JDBC.openConnection();
         launch(args);

@@ -8,6 +8,11 @@ import model.Appointment;
 import java.sql.*;
 import java.time.LocalDateTime;
 
+/**
+ * Class for querying appointments database.
+ *
+ * @author Wilson Ramirez
+ */
 public class AppointmentsQuery {
     /**
      * SQL query for getting all appointments from the database.
@@ -130,6 +135,12 @@ public class AppointmentsQuery {
         }
     }
 
+    /**
+     * SQL query to get all appointments for specific user.
+     *
+     * @param requestedUserID Requested user's ID number.
+     * @return All appointments for user.
+     */
     public static ObservableList<Appointment> getUserAppointments(int requestedUserID) {
         ObservableList<Appointment> userAppointments = FXCollections.observableArrayList();
         try {
@@ -157,6 +168,10 @@ public class AppointmentsQuery {
         return userAppointments;
     }
 
+    /**
+     * SQL query to gather all appointments and sort them by appointment type.
+     * @return All appointment types and a count of how many of each.
+     */
     public static ObservableList<Appointment> getAppointmentType() {
         ObservableList<Appointment> appointmentListType = FXCollections.observableArrayList();
         try {
@@ -175,6 +190,10 @@ public class AppointmentsQuery {
         return appointmentListType;
     }
 
+    /**
+     * SQL query to gather all appointments and sort them by month.
+     * @return All months with appointments in them and a count of how many of each.
+     */
     public static ObservableList<Appointment> getAppointmentMonth() {
         ObservableList<Appointment> appointmentListType = FXCollections.observableArrayList();
         try {

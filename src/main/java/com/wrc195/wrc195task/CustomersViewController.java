@@ -22,6 +22,11 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for viewing all customers.
+ *
+ * @author Wilson Ramirez
+ */
 public class CustomersViewController implements Initializable {
     private static Customer customerToModify;
 
@@ -150,6 +155,10 @@ public class CustomersViewController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @return Selected customer for access within other classes.
+     */
     public static Customer getCustomerToModify() { return customerToModify; }
 
     /**

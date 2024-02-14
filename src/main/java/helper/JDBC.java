@@ -2,8 +2,12 @@ package helper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLOutput;
 
+/**
+ * Class for connecting to database.
+ *
+ * @author Wilson Ramirez
+ */
 public abstract class JDBC {
 
     private static final String protocol = "jdbc";
@@ -37,7 +41,7 @@ public abstract class JDBC {
             System.out.println("Connection closed.");
         }
         catch (Exception e) {
-
+            throw new RuntimeException(e);
         }
     }
 }

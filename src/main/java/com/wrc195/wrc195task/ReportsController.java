@@ -20,10 +20,13 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for viewing all reports.
+ *
+ * @author Wilson Ramirez
+ */
 public class ReportsController implements Initializable {
     private final ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
-
-    private final ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
 
     @FXML
     private TableColumn<Appointment, Integer> apptCustomerIDCol;
@@ -98,9 +101,14 @@ public class ReportsController implements Initializable {
     private TabPane reportsTabPane;
 
 
+    /**
+     * Reports active appointments based on selected contact.
+     *
+     * @param event Sort by selected contact combo box.
+     */
     @FXML
     void onActionSortByContact(ActionEvent event) {
-        int contactID = contactCBox.getValue().getContactID();
+        int contactID = contactCBox.getValue().contactID();
 
         contactScheduleTableView.setItems(AppointmentsQuery.getUserAppointments(contactID));
 
@@ -116,29 +124,48 @@ public class ReportsController implements Initializable {
 
     }
 
+    /**
+     *
+     * @param event Back button to return to main menu
+     * @throws IOException From FXMLLoader
+     */
     @FXML
     void onActionExit(ActionEvent event) throws IOException {
         Misc.jumpToPage(event, "MainMenu.fxml");
     }
 
+    /**
+     *
+     * @param event Appointment totals tab
+     */
     @FXML
     void onSelectApptsTotals(Event event) {
 
     }
 
+    /**
+     *
+     * @param event Contact schedule tab.
+     */
     @FXML
     void onSelectContactSchedule(Event event) {
 
     }
 
+    /**
+     *
+     * @param event Customers by country tab.
+     */
     @FXML
     void onSelectCustomerByCountry(Event event) {
 
     }
 
     /**
-     * @param url
-     * @param resourceBundle
+     * Initialize controller and populate all report information.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
