@@ -2,6 +2,7 @@ package com.wrc195.wrc195task;
 
 import DAO.AppointmentsQuery;
 import DAO.ContactsQuery;
+import DAO.CountriesQuery;
 import helper.Misc;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,7 +53,7 @@ public class ReportsController implements Initializable {
     private TableColumn<Appointment, String> apptTitleCol;
 
     @FXML
-    private TableColumn<Appointment, Integer> apptTotalsByMonthCol;
+    private TableColumn<Appointment, Integer> apptMonthCol;
 
     @FXML
     private Tab apptTotalsTab;
@@ -146,5 +147,13 @@ public class ReportsController implements Initializable {
         apptTypeTableView.setItems(AppointmentsQuery.getAppointmentType());
         apptTotalsTypeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
         apptTypeTotalCol.setCellValueFactory(new PropertyValueFactory<>("apptTypeTotal"));
+
+        apptMonthTableView.setItems(AppointmentsQuery.getAppointmentMonth());
+        apptMonthCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        apptMonthTotalsCol.setCellValueFactory(new PropertyValueFactory<>("apptTypeTotal"));
+
+        countryTotalsTableView.setItems(CountriesQuery.getCustomersByCountry());
+        countryNameCol.setCellValueFactory(new PropertyValueFactory<>("countryName"));
+        countryTotalsCol.setCellValueFactory(new PropertyValueFactory<>("customerCountByCountry"));
     }
 }

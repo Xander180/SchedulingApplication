@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,100 +9,130 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wrc195.wrc195task.ReportsController">
     <children>
         <Label layoutX="6.0" layoutY="9.0" prefHeight="503.0" prefWidth="867.0" style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 5;" />
-        <Label layoutX="29.0" layoutY="25.0" prefHeight="26.0" prefWidth="146.0" text="Reports">
-            <font>
-                <Font size="23.0" />
-            </font>
-        </Label>
-        <Button layoutX="767.0" layoutY="468.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="26.0" prefWidth="84.0" text="Back" />
-        <TabPane fx:id="reportsTabPane" layoutX="15.0" layoutY="63.0" prefHeight="396.0" prefWidth="848.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab fx:id="contactScheduleTab" onSelectionChanged="#onSelectContactSchedule" text="Contact Schedule">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <AnchorPane prefHeight="365.0" prefWidth="848.0">
-                                    <children>
-                                        <ComboBox fx:id="contactCBox" layoutX="659.0" layoutY="3.0" onAction="#onActionSortByContact" prefWidth="150.0" />
-                                        <Text layoutX="511.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments by contact:" />
-                                        <TableView fx:id="contactScheduleTableView" layoutY="36.0" prefHeight="301.0" prefWidth="848.0">
-                                            <columns>
-                                                <TableColumn fx:id="apptIDCol" prefWidth="92.96410369873047" text="Appointment ID" />
-                                                <TableColumn fx:id="apptTitleCol" prefWidth="57.5" text="Title" />
-                                                <TableColumn fx:id="apptDescriptionCol" prefWidth="111.5" text="Description" />
-                                                <TableColumn fx:id="apptLocationCol" prefWidth="76.5" text="Location" />
-                                                <TableColumn fx:id="apptTypeCol" prefWidth="142.0" text="Type" />
-                                                <TableColumn fx:id="apptStartCol" prefWidth="107.5" text="Start Date/Time" />
-                                                <TableColumn fx:id="apptEndCol" prefWidth="167.5" text="End Date/Time" />
-                                                <TableColumn fx:id="apptCustomerIDCol" prefWidth="75.0" text="CustomerID" />
-                                                <TableColumn fx:id="apptContactIDCol" prefWidth="75.0" text="Contact ID" />
-                                            </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                                        </TableView>
-                                    </children>
-                                </AnchorPane>
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab fx:id="apptTotalsTab" onSelectionChanged="#onSelectApptsTotals" text="Appointment Totals">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <AnchorPane prefHeight="363.0" prefWidth="848.0">
-                                    <children>
-                                        <TableView fx:id="apptTypeTableView" layoutX="74.0" layoutY="62.0" prefHeight="231.0" prefWidth="242.0">
-                                            <columns>
-                                                <TableColumn fx:id="apptTotalsTypeCol" prefWidth="123.0" text="Appointment Type" />
-                                                <TableColumn fx:id="apptTypeTotalCol" prefWidth="118.0" text="Total" />
-                                            </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                                        </TableView>
-                                        <TableView fx:id="apptMonthTableView" layoutX="376.0" layoutY="61.0" prefHeight="232.0" prefWidth="275.0">
-                                            <columns>
-                                                <TableColumn fx:id="apptTotalsByMonthCol" prefWidth="148.0" text="Appointments By Month" />
-                                                <TableColumn fx:id="apptMonthTotalsCol" prefWidth="126.0" text="Total" />
-                                            </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                                        </TableView>
-                                    </children>
-                                </AnchorPane>
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab fx:id="customerByCountryTab" onSelectionChanged="#onSelectCustomerByCountry" text="Customer by Country">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <AnchorPane prefHeight="363.0" prefWidth="848.0">
-                                    <children>
-                                        <TableView fx:id="countryTotalsTableView" layoutX="74.0" layoutY="62.0" prefHeight="253.0" prefWidth="610.0">
-                                            <columns>
-                                                <TableColumn fx:id="countryNameCol" prefWidth="270.0" text="Country Name" />
-                                                <TableColumn fx:id="countryTotalsCol" prefWidth="339.0" text="Total " />
-                                            </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                                        </TableView>
-                                    </children>
-                                </AnchorPane>
-                            </children>
+      <VBox alignment="CENTER" layoutX="6.0" layoutY="9.0" prefHeight="502.0" prefWidth="866.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                    <Label prefHeight="26.0" text="Reports">
+                        <font>
+                            <Font name="System Bold" size="23.0" />
+                        </font>
+                    </Label>
+               </children>
+            </HBox>
+              <TabPane fx:id="reportsTabPane" prefHeight="396.0" prefWidth="848.0" tabClosingPolicy="UNAVAILABLE">
+                  <tabs>
+                      <Tab fx:id="contactScheduleTab" onSelectionChanged="#onSelectContactSchedule" text="Contact Schedule">
+                          <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                  <children>
+                              <VBox prefHeight="350.0" prefWidth="848.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments by contact:" />
+                                                    <ComboBox fx:id="contactCBox" onAction="#onActionSortByContact" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                              <TableView fx:id="contactScheduleTableView" prefHeight="301.0" prefWidth="848.0">
+                                                  <columns>
+                                                      <TableColumn fx:id="apptIDCol" prefWidth="92.96410369873047" text="Appointment ID" />
+                                                      <TableColumn fx:id="apptTitleCol" prefWidth="57.5" text="Title" />
+                                                      <TableColumn fx:id="apptDescriptionCol" prefWidth="111.5" text="Description" />
+                                                      <TableColumn fx:id="apptLocationCol" prefWidth="76.5" text="Location" />
+                                                      <TableColumn fx:id="apptTypeCol" prefWidth="142.0" text="Type" />
+                                                      <TableColumn fx:id="apptStartCol" prefWidth="107.5" text="Start" />
+                                                      <TableColumn fx:id="apptEndCol" prefWidth="167.5" text="End" />
+                                                      <TableColumn fx:id="apptCustomerIDCol" prefWidth="75.0" text="Customer ID" />
+                                                      <TableColumn fx:id="apptContactIDCol" prefWidth="75.0" text="Contact ID" />
+                                                  </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                              </TableView>
+                                 </children>
+                              </VBox>
+                                  </children>
                         </AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
+                          </content>
+                      </Tab>
+                      <Tab fx:id="apptTotalsTab" onSelectionChanged="#onSelectApptsTotals" text="Appointment Totals">
+                          <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                  <children>
+                              <HBox alignment="CENTER" prefHeight="363.0" prefWidth="848.0" spacing="40.0">
+                                 <children>
+                                              <TableView fx:id="apptTypeTableView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="231.0" prefWidth="242.0">
+                                                  <columns>
+                                                      <TableColumn fx:id="apptTotalsTypeCol" prefWidth="123.0" text="Appointment Type" />
+                                                      <TableColumn fx:id="apptTypeTotalCol" prefWidth="118.0" text="Total" />
+                                                  </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                              </TableView>
+                                              <TableView fx:id="apptMonthTableView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="232.0" prefWidth="275.0">
+                                                  <columns>
+                                                      <TableColumn fx:id="apptMonthCol" prefWidth="148.0" text="Appointments By Month" />
+                                                      <TableColumn fx:id="apptMonthTotalsCol" prefWidth="126.0" text="Total" />
+                                                  </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                              </TableView>
+                                 </children>
+                              </HBox>
+                                  </children>
+                        </AnchorPane>
+                          </content>
+                      </Tab>
+                      <Tab fx:id="customerByCountryTab" onSelectionChanged="#onSelectCustomerByCountry" text="Customers by Country">
+                          <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                  <children>
+                              <HBox alignment="CENTER" prefHeight="363.0" prefWidth="848.0">
+                                 <children>
+                                              <TableView fx:id="countryTotalsTableView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="253.0" prefWidth="610.0">
+                                                  <columns>
+                                                      <TableColumn fx:id="countryNameCol" prefWidth="270.0" text="Country Name" />
+                                                      <TableColumn fx:id="countryTotalsCol" prefWidth="339.0" text="Total " />
+                                                  </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                              </TableView>
+                                 </children>
+                              </HBox>
+                                  </children>
+                              </AnchorPane>
+                          </content>
+                      </Tab>
+                  </tabs>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" right="8.0" />
+               </padding>
+              </TabPane>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                    <Button mnemonicParsing="false" onAction="#onActionExit" prefHeight="26.0" prefWidth="84.0" text="Back">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

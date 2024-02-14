@@ -3,6 +3,7 @@ package DAO;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Appointment;
 import model.Country;
 import model.Customer;
 
@@ -53,6 +54,27 @@ public class CountriesQuery {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static ObservableList<Country> getCustomersByCountry() {
+        ObservableList<Country> countryList = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT countries.Country, COUNT(*) AS customerCount FROM customers INNER JOIN first_level_divisions " +
+                    "ON customers.Division_ID = first_level_divisions.Division_ID INNER JOIN countries " +
+                    "ON countries.Country_ID = first_level_divisions.Country_ID WHERE customers.Division_ID = first_level_divisions.Division_ID " +
+                    "GROUP BY first_level_divisions.Country_ID ORDER BY count(*) desc";
+            PreparedStatement getCustomerCount = JDBC.getConnection().prepareStatement(sql);
+            ResultSet rs = getCustomerCount.executeQuery();
+            while (rs.next()) {
+                String countryName = rs.getString("Country");
+                int customerCount = rs.getInt("customerCount");
+                Country results = new Country(countryName, customerCount);
+                countryList.add(results);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return countryList;
     }
 
     public static void checkDateConversion() {

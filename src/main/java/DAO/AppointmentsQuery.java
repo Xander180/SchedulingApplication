@@ -174,4 +174,22 @@ public class AppointmentsQuery {
         }
         return appointmentListType;
     }
+
+    public static ObservableList<Appointment> getAppointmentMonth() {
+        ObservableList<Appointment> appointmentListType = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT DISTINCT(MONTHNAME(Start)) AS Month, Count(*) AS NUM FROM appointments GROUP BY Month";
+            PreparedStatement getApptMonth = JDBC.getConnection().prepareStatement(sql);
+            ResultSet rs = getApptMonth.executeQuery();
+            while (rs.next()) {
+                String apptMonth = rs.getString("Month");
+                int apptMonthTotal = rs.getInt("NUM");
+                Appointment results = new Appointment(apptMonth, apptMonthTotal);
+                appointmentListType.add(results);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return appointmentListType;
+    }
 }
