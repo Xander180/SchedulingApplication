@@ -4,6 +4,7 @@ import com.wrc195.wrc195task.Main;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,13 +17,10 @@ import java.time.temporal.ChronoUnit;
 
 public class Misc {
 
-    static Stage stage;
-    static Parent scene;
-
     /**
      * Used to display hours in Spinner type variables.
      */
-    public static SpinnerValueFactory<LocalTime> factoryStart = new SpinnerValueFactory<LocalTime>() {
+    public static SpinnerValueFactory<LocalTime> factoryStart = new SpinnerValueFactory<>() {
 
         {
             setValue(defaultValue());
@@ -47,7 +45,7 @@ public class Misc {
 
     };
 
-    public static SpinnerValueFactory<LocalTime> factoryEnd = new SpinnerValueFactory<LocalTime>() {
+    public static SpinnerValueFactory<LocalTime> factoryEnd = new SpinnerValueFactory<>() {
 
         {
             setValue(defaultValue());
@@ -80,9 +78,10 @@ public class Misc {
      * @throws IOException From FXMLLoader.
      */
     public static void jumpToPage(ActionEvent event, String pageName) throws IOException {
-        Main.stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Main.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Main.scene = FXMLLoader.load(Main.class.getResource(pageName));
         Main.stage.setScene(new Scene(Main.scene));
+        Main.stage.centerOnScreen();
         Main.stage.show();
     }
 }

@@ -20,7 +20,7 @@
             </font>
         </Label>
         <Button layoutX="767.0" layoutY="468.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="26.0" prefWidth="84.0" text="Back" />
-        <TabPane layoutX="15.0" layoutY="63.0" prefHeight="396.0" prefWidth="848.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="reportsTabPane" layoutX="15.0" layoutY="63.0" prefHeight="396.0" prefWidth="848.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab fx:id="contactScheduleTab" onSelectionChanged="#onSelectContactSchedule" text="Contact Schedule">
                     <content>

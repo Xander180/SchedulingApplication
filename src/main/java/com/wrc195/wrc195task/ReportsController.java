@@ -2,17 +2,13 @@ package com.wrc195.wrc195task;
 
 import DAO.AppointmentsQuery;
 import DAO.ContactsQuery;
-import helper.Alerts;
 import helper.Misc;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Appointment;
 import model.Contact;
@@ -98,6 +94,10 @@ public class ReportsController implements Initializable {
     private TableColumn<Appointment, Integer> apptContactIDCol;
 
     @FXML
+    private TabPane reportsTabPane;
+
+
+    @FXML
     void onActionSortByContact(ActionEvent event) {
         int contactID = contactCBox.getValue().getContactID();
 
@@ -121,19 +121,17 @@ public class ReportsController implements Initializable {
     }
 
     @FXML
-    void onSelectApptsTotals(ActionEvent event) {
-        apptTypeTableView.setItems(AppointmentsQuery.getAppointmentType());
-        apptTotalsTypeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
-        apptTypeTotalCol.setCellValueFactory(new PropertyValueFactory<>("apptTypeTotal"));
-    }
-
-    @FXML
-    void onSelectContactSchedule(ActionEvent event) {
+    void onSelectApptsTotals(Event event) {
 
     }
 
     @FXML
-    void onSelectCustomerByCountry(ActionEvent event) {
+    void onSelectContactSchedule(Event event) {
+
+    }
+
+    @FXML
+    void onSelectCustomerByCountry(Event event) {
 
     }
 
@@ -145,6 +143,8 @@ public class ReportsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactCBox.getItems().addAll(allContacts);
 
-
+        apptTypeTableView.setItems(AppointmentsQuery.getAppointmentType());
+        apptTotalsTypeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        apptTypeTotalCol.setCellValueFactory(new PropertyValueFactory<>("apptTypeTotal"));
     }
 }
