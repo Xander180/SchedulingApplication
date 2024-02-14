@@ -20,6 +20,8 @@ import java.sql.SQLException;
  * .fxml form files are located in src/main/resources/com/wrc195/wrc195task
  *
  * Lambda expression #1 is located in LoginController at line 135
+ * Lambda expression #2 is located in AppointmentsViewController at line 188
+ * Lambda expression #3 is located in AppointmentsViewController at line 215
  *
  * @author Wilson Ramirez
  */

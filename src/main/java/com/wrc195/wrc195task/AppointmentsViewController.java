@@ -185,6 +185,7 @@ public class AppointmentsViewController implements Initializable {
             LocalDateTime currentMonthStart = LocalDateTime.now().minusMonths(1);
             LocalDateTime currentMonthEnd = LocalDateTime.now().plusMonths(1);
 
+            // LAMDA #2 used to filter appointments by current month
             allAppointments.forEach(appointments -> {
                 if (appointments.getApptEnd().isAfter(currentMonthStart) && appointments.getApptEnd().isBefore(currentMonthEnd)) {
                     appointmentsByMonth.add(appointments);
@@ -211,6 +212,7 @@ public class AppointmentsViewController implements Initializable {
             LocalDateTime currentWeekStart = LocalDateTime.now().minusWeeks(1);
             LocalDateTime currentWeekEnd = LocalDateTime.now().plusWeeks(1);
 
+            // LAMBDA #3 to filter appointments by current week
             allAppointments.forEach(appointments -> {
                 if (appointments.getApptEnd().isAfter(currentWeekStart) && appointments.getApptEnd().isBefore(currentWeekEnd)) {
                     appointmentsByWeek.add(appointments);
