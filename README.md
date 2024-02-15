@@ -3,7 +3,7 @@
 <div align="center">
   
 <!-- PROJECT SHIELDS -->
-</div>
+<div>
 <h2 align="center">WGU C195 - Scheduling Application</h2>
 <h4 align="center">Wilson Ramirez | wilson.ramirez98@gmail.com | Final Version: 2/14/2024</h4>
 </div>
@@ -11,7 +11,7 @@
   <p align="center">
     Scheduling Application created in Java for Software II at WGU
 
-</div>
+</p>
 
 <!-- TABLE OF CONTENTS -->
 <details>
