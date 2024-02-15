@@ -59,27 +59,28 @@ How to run program:</br>
 Username: test</br>
 Password: test
 
-Launch program and enter username and password (username and password are case sensitive) on login screen and click the login button or cancel to exit the program.</br>
+Launch program and enter username and password (username and password are case sensitive) on login screen and click the login button or exit to close the program.</br>
 
-User will receive an alert if username or password is incorrect. Once the user has been validated and logged in - an alert will be display letting the user know if there are any appointments within 15 minutes or not.
+User will receive an error alert if username or password is incorrect. Once the user has been validated and logged in, an alert will be display notifying the user of appointments that are within 15 minutes of starting or if there aren't any.
 
 <b>MAIN MENU:</b></br>
 After the appointment notification, the user will be directed to the main menu where 4 buttons will appear on the screen.
 
 <b>APPOINTMENT:</b></br>
-The appointment button will lead the user to a screen that displays all existing appointments by default. At the top middle of the screen, the user can select from all appointments, the next rolling week and the
-next rolling month appointments by selecting the appropriate radio button.  Underneath the table on the left-hand side, there are 3 buttons. The update button will allow the user to update an existing
+The appointment button will lead the user to a screen that displays all existing appointments. At the top right of the screen, the user can sort appointments by all appointments, appointments by month, or appointments by week using the three radio buttons. Underneath the table in the middle, there are 3 buttons. The update button will allow the user to update an existing
 appointment, the add button will allow a user to create a new appointment and the delete button will allow the user to delete the selected appointment from the system.
-The back to menu button will take you back to the main menu screen.
+Appointments cannot be modified or delete unless one is selected first.
+The back button will take you back to the main menu screen.
 
 <b>CUSTOMER:</b></br>
-The customer button will lead to the customer list and provide a table with all the available customer's information. Underneath the table on the left-hand side, there are 3 buttons.
+The customer button will lead to the customer list, displaying all customers and their information. Underneath the table in the middle, there are 3 buttons.
 The update button will allow you to update an existing contact, the add button will allow you to create a new customer, and delete will allow you to remove an existing customer from the system.
-The back to menu button will take you back to the main menu screen.
+Customers cannot be modified or delete unless one is selected first.
+The back button will take you back to the main menu screen.
 
 <b>REPORTS:</b></br>
-The report button will take you to the report list where there will be three tabs. Each tab has its own report, Appointment Totals, Contact Schedules and Customer Totals by Country.
-The appointment totals tab displays the different appointment types and their associated totals. In addition, on the right side of the appointment totals tab, the appointment totals are broken down by month.
+The report button will take you to the report screen where there will be three tabs. Each tab has its own report: Appointment Totals, Contact Schedules and Customer Totals by Country.
+The appointment totals tab displays the different appointment types and how many appointments of each type exists . In addition, on the right side of the appointment totals table, the appointment totals are broken down by month.
 The contact schedules tab has a combobox that allows you to select a contact and will display appointments associated with the content in the tableview.
 
 <B>REPORT A3F:</b></br> The Customer Totals By Country tab shows the number of Customers per country.
@@ -100,8 +101,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/mriffey1/C195-Scheduling.svg?style=for-the-badge
-[contributors-url]: https://github.com/mriffey1/C195-Scheduling/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/mriffey1/C195-Scheduling.svg?style=for-the-badge
 [forks-url]: https://github.com/mriffey1/C195-Scheduling/network/members
 [stars-shield]: https://img.shields.io/github/stars/mriffey1/C195-Scheduling.svg?style=for-the-badge
@@ -110,8 +109,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [issues-url]: https://github.com/mriffey1/C195-Scheduling/issues
 [license-shield]: https://img.shields.io/github/license/mriffey1/C195-Scheduling.svg?style=for-the-badge
 [license-url]: https://github.com/mriffey1/C195-Scheduling/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/mriffey
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
