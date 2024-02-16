@@ -97,7 +97,7 @@ public class Customer {
      *
      * @return customer ZIP/Postal code.
      */
-    public String getCustomerPostal() {
+    public String getCustomerZip() {
         return customerZip;
     }
 
@@ -105,7 +105,7 @@ public class Customer {
      * Sets the customer ZIP/Postal code.
      * @param customerZip Customer's postal code
      */
-    public void setCustomerPostal(String customerZip) {
+    public void setCustomerZip(String customerZip) {
         this.customerZip = customerZip;
     }
 

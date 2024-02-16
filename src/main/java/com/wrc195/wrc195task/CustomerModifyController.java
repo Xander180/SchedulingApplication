@@ -123,7 +123,7 @@ public class CustomerModifyController implements Initializable {
         customerIDTxt.setText(String.valueOf(selectedCustomer.getCustomerID()));
         customerNameTxt.setText(String.valueOf(selectedCustomer.getCustomerName()));
         customerAddressTxt.setText(String.valueOf(selectedCustomer.getCustomerAddress()));
-        customerPostalTxt.setText(String.valueOf(selectedCustomer.getCustomerPostal()));
+        customerPostalTxt.setText(String.valueOf(selectedCustomer.getCustomerZip()));
         customerPhoneTxt.setText(String.valueOf(selectedCustomer.getCustomerPhone()));
         customerCountryCBox.setValue(CountriesQuery.returnCountry(selectedCustomer.getCountryID()));
         customerDivisionCBox.setValue(FirstLevelDivisionsQuery.returnDivision(selectedCustomer.getDivisionID()));
