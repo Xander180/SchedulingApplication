@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-<div align="center">
+<div> align="center">
   
 <!-- PROJECT SHIELDS -->
 <div>
@@ -30,7 +30,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<div align="center"><img src="https://github.com/Xander180/WGU-C195-SchedulingApplication/assets/67243244/334c9f20-9b33-41db-b1cf-57bdb066b732" height="200px" alt-text="image"></div></br>
+<div align="center"><img src="https://github.com/Xander180/WGU-C195-SchedulingApplication/assets/67243244/334c9f20-9b33-41db-b1cf-57bdb066b732" height="200px" alt-text="image"></div></div>
 Mock scheduling application where one can create, update, and delete appointments and customers to/from an SQL database. The database schema is no longer available as it was accessible solely for project completion.  
 
 
@@ -61,7 +61,7 @@ How to run program:</br>
 Username: test</br>
 Password: test
 
-Launch program and enter username and password (username and password are case sensitive) on login screen and click the login button or exit to close the program.</br>
+Launch program and enter username and password (username and password are case-sensitive) on login screen and click the login button or exit to close the program.</br>
 
 User will receive an error alert if username or password is incorrect. Once the user has been validated and logged in, an alert will be display notifying the user of appointments that are within 15 minutes of starting or if there aren't any.
 
@@ -83,12 +83,12 @@ The back button will take you back to the main menu screen.
 <b>REPORTS:</b></br>
 The report button will take you to the report screen where there will be three tabs. Each tab has its own report: Appointment Totals, Contact Schedules and Customer Totals by Country.
 The appointment totals tab displays the different appointment types and how many appointments of each type exists . In addition, on the right side of the appointment totals table, the appointment totals are broken down by month.
-The contact schedules tab has a combobox that allows you to select a contact and will display appointments associated with the content in the tableview.
+The contact schedules tab has a combo-box that allows you to select a contact and will display appointments associated with the content in the tableview.
 
 <B>REPORT A3F:</b></br> The Customer Totals By Country tab shows the number of Customers per country.
 
 <b>LOG OUT:</b></br>
-The log out button will display a confirmation box to confirm if you would like to log out. If "OK" is confirmed, you will be returned to the login screen.
+The log-out button will display a confirmation box to confirm if you would like to log out. If "OK" is confirmed, you will be returned to the login screen.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

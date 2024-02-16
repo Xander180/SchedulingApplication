@@ -130,13 +130,15 @@ public class CustomersQuery {
             returnCustomer.setInt(1, customerId);
             returnCustomer.execute();
             ResultSet rs = returnCustomer.executeQuery();
-
+        while (rs.next()) {
             int returnedCustomerId = rs.getInt("Customer_ID");
             String customerName = rs.getString("Customer_Name");
             return new Customer(returnedCustomerId, customerName);
+        }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 }

@@ -58,15 +58,17 @@ public class CountriesQuery {
             returnCountry.execute();
             ResultSet rs = returnCountry.executeQuery();
 
-
+        while (rs.next()) {
             int id = rs.getInt("Country_ID");
             String countryName = rs.getString("Country");
             return new Country(id, countryName);
+        }
 
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     /**
