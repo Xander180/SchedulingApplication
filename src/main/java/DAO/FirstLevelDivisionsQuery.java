@@ -56,15 +56,17 @@ public class FirstLevelDivisionsQuery {
             returnDivision.setInt(1, divisionID);
             returnDivision.execute();
             ResultSet rs = returnDivision.executeQuery();
-
+        while (rs.next()) {
             int returnedDivisionID = rs.getInt("Division_ID");
-            String reurnedDivisionName = rs.getString("Division");
+            String returnedDivisionName = rs.getString("Division");
             int countryID = rs.getInt("Country_ID");
-            return new FirstLevelDivision(returnedDivisionID, reurnedDivisionName, countryID);
+            return new FirstLevelDivision(returnedDivisionID, returnedDivisionName, countryID);
+        }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
 }
