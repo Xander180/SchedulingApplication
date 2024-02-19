@@ -52,7 +52,7 @@
                         <TextField fx:id="customerPhoneTxt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <ComboBox fx:id="customerDivisionCBox" prefHeight="25.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label text="Country" GridPane.rowIndex="6" />
-                        <ComboBox fx:id="customerCountryCBox" prefHeight="25.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <ComboBox fx:id="customerCountryCBox" onAction="#onActionChangeCountry" prefHeight="25.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                     </children>
                     <padding>
                         <Insets left="20.0" />

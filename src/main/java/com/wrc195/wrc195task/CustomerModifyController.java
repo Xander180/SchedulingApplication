@@ -5,6 +5,7 @@ import DAO.CustomersQuery;
 import DAO.FirstLevelDivisionsQuery;
 import helper.Alerts;
 import helper.Misc;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -108,6 +109,20 @@ public class CustomerModifyController implements Initializable {
         }
     }
 
+    @FXML
+    void onActionChangeCountry(ActionEvent event) {
+        Country selectedCountry = customerCountryCBox.getValue();
+        ObservableList<FirstLevelDivision> loadedDivisions = FXCollections.observableArrayList();
+
+        for (FirstLevelDivision division : allDivisions) {
+            if (division.countryID() == selectedCountry.getCountryID()) {
+                loadedDivisions.add(division);
+            }
+        }
+        customerDivisionCBox.getItems().clear();
+        customerDivisionCBox.getItems().addAll(loadedDivisions);
+    }
+
     /**
      * Initialize controller and popualate selected customer information.
      *
@@ -118,7 +133,6 @@ public class CustomerModifyController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Customer selectedCustomer = CustomersViewController.getCustomerToModify();
         customerCountryCBox.getItems().addAll(allCountries);
-        customerDivisionCBox.getItems().addAll(allDivisions);
 
         customerIDTxt.setText(String.valueOf(selectedCustomer.getCustomerID()));
         customerNameTxt.setText(String.valueOf(selectedCustomer.getCustomerName()));
@@ -126,8 +140,17 @@ public class CustomerModifyController implements Initializable {
         customerPostalTxt.setText(String.valueOf(selectedCustomer.getCustomerZip()));
         customerPhoneTxt.setText(String.valueOf(selectedCustomer.getCustomerPhone()));
         customerCountryCBox.setValue(CountriesQuery.returnCountry(selectedCustomer.getCountryID()));
+
+        Country selectedCountry = customerCountryCBox.getValue();
+        ObservableList<FirstLevelDivision> loadedDivisions = FXCollections.observableArrayList();
+
+        for (FirstLevelDivision division : allDivisions) {
+            if (division.countryID() == selectedCountry.getCountryID()) {
+                loadedDivisions.add(division);
+            }
+        }
+        customerDivisionCBox.getItems().addAll(loadedDivisions);
+
         customerDivisionCBox.setValue(FirstLevelDivisionsQuery.returnDivision(selectedCustomer.getDivisionID()));
-
-
     }
 }
